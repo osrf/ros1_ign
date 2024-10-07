@@ -121,7 +121,7 @@ def launch_gz(context, *args, **kwargs):
     else:
         debug_prefix = None
 
-    if on_exit_shutdown:
+    if on_exit_shutdown != 'false':
         on_exit = Shutdown()
     else:
         on_exit = None
