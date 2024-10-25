@@ -158,11 +158,13 @@ int main(int _argc, char ** _argv)
 
     if (!executed) {
       RCLCPP_INFO(ros2_node->get_logger(), "Timed out when getting world names.");
+      rclcpp::shutdown();
       return -1;
     }
 
     if (!result || worlds_msg.data().empty()) {
       RCLCPP_INFO(ros2_node->get_logger(), "Failed to get world names.");
+      rclcpp::shutdown();
       return -1;
     }
 
@@ -185,6 +187,7 @@ int main(int _argc, char ** _argv)
   } else if (!topic_name.empty()) {
     // set XML string by fetching it from the given topic
     if (!set_XML_from_topic(topic_name, ros2_node, req)) {
+      rclcpp::shutdown();
       return -1;
     }
   } else if (filtered_arguments.size() > 1) {
@@ -200,6 +203,7 @@ int main(int _argc, char ** _argv)
       } else {
         RCLCPP_ERROR(
           ros2_node->get_logger(), "Failed to get XML from param [%s].", FLAGS_param.c_str());
+        rclcpp::shutdown();
         return -1;
       }
     } else if (!FLAGS_string.empty()) {  // string
@@ -207,11 +211,13 @@ int main(int _argc, char ** _argv)
     } else if (!FLAGS_topic.empty()) {  // topic
       // set XML string by fetching it from the given topic
       if (!set_XML_from_topic(FLAGS_topic, ros2_node, req)) {
+        rclcpp::shutdown();
         return -1;
       }
     } else {
       RCLCPP_ERROR(
         ros2_node->get_logger(), "Must specify either -file, -param, -string or -topic");
+      rclcpp::shutdown();
       return -1;
     }
     // TODO(azeey) Deprecate use of command line flags in ROS 2 K-turtle in
@@ -219,6 +225,7 @@ int main(int _argc, char ** _argv)
   } else {
     RCLCPP_ERROR(
       ros2_node->get_logger(), "Must specify either file, string or topic as ROS 2 parameters");
+    rclcpp::shutdown();
     return -1;
   }
 
