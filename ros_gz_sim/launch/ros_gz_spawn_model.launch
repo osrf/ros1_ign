@@ -1,0 +1,48 @@
+<launch>
+  <arg name="bridge_name" />
+  <arg name="config_file" />
+  <arg name="container_name" default="ros_gz_container" />
+  <arg name="create_own_container" default="False" />
+  <arg name="namespace" default="" />
+  <arg name="use_composition" default="False" />
+  <arg name="use_respawn" default="False" />
+  <arg name="log_level" default="info" />
+  <arg name="world" default="" />
+  <arg name="file" default="" />
+  <arg name="model_string" default="" />
+  <arg name="topic" default="" />
+  <arg name="entity_name" default="" />
+  <arg name="allow_renaming" default="False" />
+  <arg name="x" default="0.0" />
+  <arg name="y" default="0.0" />
+  <arg name="z" default="0.0" />
+  <arg name="roll" default="0.0" />
+  <arg name="pitch" default="0.0" />
+  <arg name="yaw" default="0.0" />
+
+  <ros_gz_bridge
+    bridge_name="$(var bridge_name)"
+    config_file="$(var config_file)"
+    container_name="$(var container_name)"
+    create_own_container="$(var create_own_container)"
+    namespace="$(var namespace)"
+    use_composition="$(var use_composition)"
+    use_respawn="$(var use_respawn)"
+    log_level="$(var log_level)">
+  </ros_gz_bridge>
+
+  <gz_spawn_model 
+    world="$(var world)"
+    file="$(var file)"
+    model_string="$(var model_string)"
+    topic="$(var topic)"
+    entity_name="$(var entity_name)"
+    allow_renaming="$(var allow_renaming)"
+    x="$(var x)"
+    y="$(var y)"
+    z="$(var z)"
+    roll="$(var roll)"
+    pitch="$(var pitch)"
+    yaw="$(var yaw)">
+  </gz_spawn_model>
+</launch>
