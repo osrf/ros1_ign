@@ -13,12 +13,12 @@
   <arg name="topic" default="" />
   <arg name="entity_name" default="" />
   <arg name="allow_renaming" default="False" />
-  <arg name="x" default="" />
-  <arg name="y" default="" />
-  <arg name="z" default="" />
-  <arg name="roll" default="" />
-  <arg name="pitch" default="" />
-  <arg name="yaw" default="" />
+  <arg name="x" default="0.0" />
+  <arg name="y" default="0.0" />
+  <arg name="z" default="0.0" />
+  <arg name="roll" default="0.0" />
+  <arg name="pitch" default="0.0" />
+  <arg name="yaw" default="0.0" />
 
   <ros_gz_bridge
     bridge_name="$(var bridge_name)"
