@@ -83,9 +83,12 @@ def generate_launch_description():
         string_bridge_params = bridge_params.perform(context)
         # Remove unnecessary symbols from bridge_params
         simplified_bridge_params = string_bridge_params.translate({ord(i): None for i in '{} "\''})
-        # Parse from string to dictionary
-        bridge_params_pairs = simplified_bridge_params.split(',')
-        parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
+        if simplified_bridge_params:
+            # Parse from string to dictionary
+            bridge_params_pairs = simplified_bridge_params.split(',')
+            parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
+        else:
+            parsed_bridge_params = {}
 
         load_nodes = GroupAction(
             condition=IfCondition(PythonExpression(['not ', use_composition])),
