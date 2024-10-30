@@ -69,7 +69,6 @@ def generate_launch_description():
         'bridge_params', default_value='', description='Extra parameters to pass to the bridge.'
     )
 
-
     def node_setup(context):
         bridge_name = LaunchConfiguration('bridge_name')
         config_file = LaunchConfiguration('config_file')
@@ -81,11 +80,12 @@ def generate_launch_description():
         log_level = LaunchConfiguration('log_level')
         bridge_params = LaunchConfiguration('bridge_params')
 
-
+        string_bridge_params = bridge_params.perform(context)
         # Remove unnecessary symbols from bridge_params
-        simplified_bridge_params = bridge_params.perform(context).translate({ord(i): None for i in '{} "\''})
+        simplified_bridge_params = string_bridge_params.translate({ord(i): None for i in '{} "\''})
         # Parse from string to dictionary
-        parsed_bridge_params = dict(pair.split(':') for pair in simplified_bridge_params.split(','))
+        bridge_params_pairs = simplified_bridge_params.split(',')
+        parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
 
         load_nodes = GroupAction(
             condition=IfCondition(PythonExpression(['not ', use_composition])),
@@ -140,7 +140,11 @@ def generate_launch_description():
             ],
         )
 
-        return [load_nodes, load_composable_nodes_with_container, load_composable_nodes_without_container]
+        return [
+            load_nodes,
+            load_composable_nodes_with_container,
+            load_composable_nodes_without_container
+        ]
 
     # Create the launch description and populate
     ld = LaunchDescription()
