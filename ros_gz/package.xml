@@ -4,7 +4,7 @@
   <!-- TODO: Make this a metapackage, see
        https://github.com/ros2/ros2/issues/408 -->
   <name>ros_gz</name>
-  <version>2.1.1</version>
+  <version>2.1.2</version>
   <description>Meta-package containing interfaces for using ROS 2 with <a href="https://gazebosim.org">Gazebo</a> simulation.</description>
   <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
   <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
