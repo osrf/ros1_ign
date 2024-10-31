@@ -2,6 +2,9 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.2 (2024-10-31)
+------------------
+
 2.1.1 (2024-10-14)
 ------------------
 * Extra parameter to start a container (`#616 <https://github.com/gazebosim/ros_gz/issues/616>`_)

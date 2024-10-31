@@ -1,6 +1,6 @@
 <package format="3">
   <name>ros_gz_sim_demos</name>
-  <version>2.1.1</version>
+  <version>2.1.2</version>
   <description>Demos using Gazebo Sim simulation with ROS.</description>
   <license>Apache 2.0</license>
   <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
