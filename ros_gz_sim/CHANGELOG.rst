@@ -2,6 +2,14 @@
 Changelog for package ros_gz_sim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.2 (2024-10-31)
+------------------
+* Create ros_gz_spawn_model.launch (`#604 <https://github.com/gazebosim/ros_gz/issues/604>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Add create_own_container argument to ros_gz_spawn_model.launch.py (`#622 <https://github.com/gazebosim/ros_gz/issues/622>`_)
+* Fix ros_gz_sim.launch.py when create_own_container is enabled. (`#620 <https://github.com/gazebosim/ros_gz/issues/620>`_)
+* Contributors: Aarav Gupta, Amronos, Carlos Agüero
+
 2.1.1 (2024-10-14)
 ------------------
 * Extra parameter to start a container (`#616 <https://github.com/gazebosim/ros_gz/issues/616>`_)
