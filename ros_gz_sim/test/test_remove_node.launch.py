@@ -25,7 +25,7 @@ def generate_test_description():
     entity_name = 'my_robot'
     remove = Node(package='ros_gz_sim',
                   executable='remove',
-                  parameters=[{'world': 'default', 'entity_to_remove_name': entity_name}],
+                  parameters=[{'world': 'default', 'entity_name': entity_name}],
                   output='screen')
     test_remove = Node(package='ros_gz_sim', executable='test_remove', output='screen')
     return LaunchDescription([

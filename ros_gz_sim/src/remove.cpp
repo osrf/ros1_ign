@@ -87,7 +87,7 @@ int main(int _argc, char ** _argv)
   rclcpp::init(_argc, _argv);
   auto ros2_node = rclcpp::Node::make_shared("ros_gz_sim_remove_entity");
   ros2_node->declare_parameter("world", "");
-  ros2_node->declare_parameter("entity_to_remove_name", "");
+  ros2_node->declare_parameter("entity_name", "");
 
   std::string world_name = ros2_node->get_parameter("world").as_string();
   if (world_name.empty()) {
@@ -97,13 +97,13 @@ int main(int _argc, char ** _argv)
     }
   }
 
-  const std::string entity_to_remove_name =
-    ros2_node->get_parameter("entity_to_remove_name").as_string();
-  if (entity_to_remove_name.empty()) {
+  const std::string entity_name =
+    ros2_node->get_parameter("entity_name").as_string();
+  if (entity_name.empty()) {
     RCLCPP_INFO(ros2_node->get_logger(),
             "Entity to remove name is not provided, entity will not be removed.");
     return -1;
   }
 
-  return remove_entity(entity_to_remove_name, world_name, ros2_node);
+  return remove_entity(entity_name, world_name, ros2_node);
 }
