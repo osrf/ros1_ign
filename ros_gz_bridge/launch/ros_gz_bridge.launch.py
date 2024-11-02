@@ -15,11 +15,9 @@
 """Launch ros_gz bridge in a component container."""
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, GroupAction, OpaqueFunction
-from launch.conditions import IfCondition
-from launch.substitutions import LaunchConfiguration, PythonExpression
-from launch_ros.actions import ComposableNodeContainer, LoadComposableNodes, Node
-from launch_ros.descriptions import ComposableNode
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from ros_gz_bridge.actions import RosGzBridge
 
 
 def generate_launch_description():
@@ -69,85 +67,17 @@ def generate_launch_description():
         'bridge_params', default_value='', description='Extra parameters to pass to the bridge.'
     )
 
-    def node_setup(context):
-        bridge_name = LaunchConfiguration('bridge_name')
-        config_file = LaunchConfiguration('config_file')
-        container_name = LaunchConfiguration('container_name')
-        create_own_container = LaunchConfiguration('create_own_container')
-        namespace = LaunchConfiguration('namespace')
-        use_composition = LaunchConfiguration('use_composition')
-        use_respawn = LaunchConfiguration('use_respawn')
-        log_level = LaunchConfiguration('log_level')
+    ros_gz_bridge_action = RosGzBridge(
+        bridge_name = LaunchConfiguration('bridge_name'),
+        config_file = LaunchConfiguration('config_file'),
+        container_name = LaunchConfiguration('container_name'),
+        create_own_container = LaunchConfiguration('create_own_container'),
+        namespace = LaunchConfiguration('namespace'),
+        use_composition = LaunchConfiguration('use_composition'),
+        use_respawn = LaunchConfiguration('use_respawn'),
+        log_level = LaunchConfiguration('log_level'),
         bridge_params = LaunchConfiguration('bridge_params')
-
-        string_bridge_params = bridge_params.perform(context)
-        # Remove unnecessary symbols from bridge_params
-        simplified_bridge_params = string_bridge_params.translate({ord(i): None for i in '{} "\''})
-        if simplified_bridge_params:
-            # Parse from string to dictionary
-            bridge_params_pairs = simplified_bridge_params.split(',')
-            parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
-        else:
-            parsed_bridge_params = {}
-
-        load_nodes = GroupAction(
-            condition=IfCondition(PythonExpression(['not ', use_composition])),
-            actions=[
-                Node(
-                    package='ros_gz_bridge',
-                    executable='bridge_node',
-                    name=bridge_name,
-                    namespace=namespace,
-                    output='screen',
-                    respawn=use_respawn,
-                    respawn_delay=2.0,
-                    parameters=[{'config_file': config_file, **parsed_bridge_params}],
-                    arguments=['--ros-args', '--log-level', log_level],
-                ),
-            ],
-        )
-
-        load_composable_nodes_with_container = ComposableNodeContainer(
-            condition=IfCondition(
-                PythonExpression([use_composition, ' and ', create_own_container])),
-            name=LaunchConfiguration('container_name'),
-            namespace='',
-            package='rclcpp_components',
-            executable='component_container',
-            composable_node_descriptions=[
-                ComposableNode(
-                    package='ros_gz_bridge',
-                    plugin='ros_gz_bridge::RosGzBridge',
-                    name=bridge_name,
-                    namespace=namespace,
-                    parameters=[{'config_file': config_file, **parsed_bridge_params}],
-                    extra_arguments=[{'use_intra_process_comms': True}],
-                ),
-            ],
-            output='screen',
-        )
-
-        load_composable_nodes_without_container = LoadComposableNodes(
-            condition=IfCondition(
-                PythonExpression([use_composition, ' and not ', create_own_container])),
-            target_container=container_name,
-            composable_node_descriptions=[
-                ComposableNode(
-                    package='ros_gz_bridge',
-                    plugin='ros_gz_bridge::RosGzBridge',
-                    name=bridge_name,
-                    namespace=namespace,
-                    parameters=[{'config_file': config_file, **parsed_bridge_params}],
-                    extra_arguments=[{'use_intra_process_comms': True}],
-                ),
-            ],
-        )
-
-        return [
-            load_nodes,
-            load_composable_nodes_with_container,
-            load_composable_nodes_without_container
-        ]
+    )
 
     # Create the launch description and populate
     ld = LaunchDescription()
@@ -162,7 +92,6 @@ def generate_launch_description():
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
     ld.add_action(declare_bridge_params_cmd)
-    # Add the actions to launch all of the bridge nodes
-    node_setup_function = OpaqueFunction(function=node_setup)
-    ld.add_action(node_setup_function)
+    # Add the ros_gz_bridge action
+    ld.add_action(ros_gz_bridge_action)
     return ld
