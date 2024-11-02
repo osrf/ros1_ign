@@ -206,7 +206,9 @@ class RosGzBridge(Action):
         # Composable node without container configuration
         load_composable_nodes_without_container = LoadComposableNodes(
             condition=IfCondition(
-                PythonExpression([self.__use_composition, ' and not ', self.__create_own_container])
+                PythonExpression(
+                    [self.__use_composition, ' and not ', self.__create_own_container]
+                )
             ),
             target_container=self.__container_name,
             composable_node_descriptions=[

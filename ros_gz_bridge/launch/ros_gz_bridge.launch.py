@@ -68,15 +68,15 @@ def generate_launch_description():
     )
 
     ros_gz_bridge_action = RosGzBridge(
-        bridge_name = LaunchConfiguration('bridge_name'),
-        config_file = LaunchConfiguration('config_file'),
-        container_name = LaunchConfiguration('container_name'),
-        create_own_container = LaunchConfiguration('create_own_container'),
-        namespace = LaunchConfiguration('namespace'),
-        use_composition = LaunchConfiguration('use_composition'),
-        use_respawn = LaunchConfiguration('use_respawn'),
-        log_level = LaunchConfiguration('log_level'),
-        bridge_params = LaunchConfiguration('bridge_params')
+        bridge_name=LaunchConfiguration('bridge_name'),
+        config_file=LaunchConfiguration('config_file'),
+        container_name=LaunchConfiguration('container_name'),
+        create_own_container=LaunchConfiguration('create_own_container'),
+        namespace=LaunchConfiguration('namespace'),
+        use_composition=LaunchConfiguration('use_composition'),
+        use_respawn=LaunchConfiguration('use_respawn'),
+        log_level=LaunchConfiguration('log_level'),
+        bridge_params=LaunchConfiguration('bridge_params')
     )
 
     # Create the launch description and populate
