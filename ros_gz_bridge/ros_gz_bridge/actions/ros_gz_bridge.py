@@ -152,14 +152,14 @@ class RosGzBridge(Action):
 
     def execute(self, context: LaunchContext) -> Optional[List[Action]]:
         """Execute the action."""
-        # Parse bridge parameters if any
         string_bridge_params = self.__bridge_params.perform(context)
+        # Remove unnecessary symbols
+        simplified_bridge_params = string_bridge_params.translate(
+            {ord(i): None for i in '{} "\''}
+        )
+        # Parse to dictionary
         parsed_bridge_params = {}
-        if string_bridge_params:
-            # Remove unnecessary symbols and parse to dictionary
-            simplified_bridge_params = string_bridge_params.translate(
-                {ord(i): None for i in '{} "\''}
-            )
+        if simplified_bridge_params:
             bridge_params_pairs = simplified_bridge_params.split(',')
             parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
 
