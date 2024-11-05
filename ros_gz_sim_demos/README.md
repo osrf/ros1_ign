@@ -40,7 +40,7 @@ Using the image bridge (unidirectional, uses [image_transport](http://wiki.ros.o
 
 Using the regular bridge:
 
-    ros2 launch ros_gz_sim_demos camera.launch.py
+    ros2 launch ros_gz_sim_demos camera.launch.xml
 
 To use a camera that only publishes information when triggered:
 
