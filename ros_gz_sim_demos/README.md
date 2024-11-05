@@ -14,7 +14,7 @@ There's a convenient launch file, try for example:
 
 Publishes fluid pressure readings.
 
-    ros2 launch ros_gz_sim_demos air_pressure.launch
+    ros2 launch ros_gz_sim_demos air_pressure.launch.xml
 
 You can subscribe to receive the data with:
 
