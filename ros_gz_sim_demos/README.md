@@ -122,6 +122,16 @@ Publishes IMU readings.
 
 *TODO*: IMU display missing for RViz2
 
+## Joint States Publisher
+
+Publishes joint states of the robot.
+
+To try the demo launch:
+
+    ros2 launch ros_gz_sim_demos joint_states.launch.py
+
+![](images/joint_states.png)
+
 ## Magnetometer
 
 Publishes magnetic field readings.
@@ -185,16 +195,6 @@ To try the demo launch:
     ros2 launch ros_gz_sim_demos robot_description_publisher.launch.py
 
 ![](images/robot_state_publisher_demo.png)
-
-## Joint States Publisher
-
-Publishes joint states of the robot.
-
-To try the demo launch:
-
-    ros2 launch ros_gz_sim_demos joint_states.launch.py
-
-![](images/joint_states.png)
 
 ## Bridging joint state and pose publishers
 

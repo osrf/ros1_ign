@@ -1,0 +1,18 @@
+# Joint states configuration.
+- ros_topic_name: "/clock"
+  gz_topic_name: "/clock"
+  ros_type_name: "osgraph_msgs/msg/Clock"
+  gz_type_name: "gz.msgs.Clock"
+  subscriber_queue: 5
+  publisher_queue: 6
+  lazy: false
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/world/empty/model/rrbot/joint_state"
+  gz_topic_name: "/world/empty/model/rrbot/joint_state"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "gz.msgs.Model"
+  subscriber_queue: 5
+  publisher_queue: 6
+  lazy: false
+  direction: GZ_TO_ROS
