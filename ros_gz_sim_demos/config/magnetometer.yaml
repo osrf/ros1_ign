@@ -1,0 +1,9 @@
+# Magnetometer configuration.
+- ros_topic_name: "/magnetometer"
+  gz_topic_name: "/magnetometer"
+  ros_type_name: "sensor_msgs/msg/MagneticField"
+  gz_type_name: "gz.msgs.Magnetometer"
+  subscriber_queue: 5
+  publisher_queue: 6
+  lazy: false
+  direction: GZ_TO_ROS
