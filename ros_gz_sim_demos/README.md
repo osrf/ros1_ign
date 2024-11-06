@@ -56,21 +56,11 @@ Trigger the camera:
 
 Send commands to a differential drive vehicle and listen to its odometry.
 
-    ros2 launch ros_gz_sim_demos diff_drive.launch.py
+    ros2 launch ros_gz_sim_demos diff_drive.launch.xml
 
-Then unpause and send a command
+Then send a command.
 
     ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
-
-This demo also shows the use of custom QoS parameters. The commands are
-subscribed to as "reliable", so trying to publish "best-effort" commands
-won't work. See the difference between:
-
-    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.0}}" --qos-reliability reliable
-
-And
-
-    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.0}}" --qos-reliability best_effort
 
 ![](images/diff_drive_demo.png)
 
