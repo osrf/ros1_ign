@@ -1,0 +1,9 @@
+# Navsat_gpsfix configuration.
+- ros_topic_name: "/navsat"
+  gz_topic_name: "/navsat"
+  ros_type_name: "gps_msgs/msg/GPSFix"
+  gz_type_name: "gz.msgs.NavSat"
+  subscriber_queue: 5
+  publisher_queue: 6
+  lazy: false
+  direction: GZ_TO_ROS
