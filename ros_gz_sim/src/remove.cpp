@@ -18,6 +18,7 @@
 
 #include <string>
 #include <optional>
+#include <memory>
 
 #include <rclcpp/rclcpp.hpp>
 #include <gz/transport/Node.hh>

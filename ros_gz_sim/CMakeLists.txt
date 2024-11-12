@@ -120,10 +120,6 @@ install(FILES
 
 install(TARGETS
   create
-  DESTINATION lib/${PROJECT_NAME}
-)
-
-install(TARGETS
   remove
   DESTINATION lib/${PROJECT_NAME}
 )
