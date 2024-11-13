@@ -44,7 +44,7 @@ Using the regular bridge:
 
 To use a camera that only publishes information when triggered:
 
-    ros2 launch ros_gz_sim_demos triggered_camera.launch.py
+    ros2 launch ros_gz_sim_demos triggered_camera.launch.xml
 
 Trigger the camera:
 
