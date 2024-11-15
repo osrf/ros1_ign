@@ -31,6 +31,7 @@ def generate_launch_description():
     use_composition = LaunchConfiguration('use_composition')
     use_respawn = LaunchConfiguration('use_respawn')
     bridge_log_level = LaunchConfiguration('bridge_log_level')
+    bridge_params = LaunchConfiguration('bridge_params')
 
     world_sdf_file = LaunchConfiguration('world_sdf_file')
     world_sdf_string = LaunchConfiguration('world_sdf_string')
@@ -73,6 +74,10 @@ def generate_launch_description():
         'bridge_log_level', default_value='info', description='Bridge log level'
     )
 
+    declare_bridge_params_cmd = DeclareLaunchArgument(
+        'bridge_params', default_value='', description='Extra parameters to pass to the bridge.'
+    )
+
     declare_world_sdf_file_cmd = DeclareLaunchArgument(
         'world_sdf_file', default_value=TextSubstitution(text=''),
         description='Path to the SDF world file'
@@ -106,7 +111,8 @@ def generate_launch_description():
                           ('create_own_container', str(False)),
                           ('use_composition', use_composition),
                           ('use_respawn', use_respawn),
-                          ('bridge_log_level', bridge_log_level), ])
+                          ('bridge_log_level', bridge_log_level),
+                          ('bridge_params', bridge_params), ])
 
     # Create the launch description and populate
     ld = LaunchDescription()
@@ -120,6 +126,7 @@ def generate_launch_description():
     ld.add_action(declare_use_composition_cmd)
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_bridge_log_level_cmd)
+    ld.add_action(declare_bridge_params_cmd)
     ld.add_action(declare_world_sdf_file_cmd)
     ld.add_action(declare_world_sdf_string_cmd)
     # Add the actions to launch all of the bridge + gz_server nodes

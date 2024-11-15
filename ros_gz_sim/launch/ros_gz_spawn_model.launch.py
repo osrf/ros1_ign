@@ -31,6 +31,7 @@ def generate_launch_description():
     use_composition = LaunchConfiguration('use_composition')
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
+    bridge_params = LaunchConfiguration('bridge_params')
 
     world = LaunchConfiguration('world')
     file = LaunchConfiguration('file')
@@ -83,6 +84,10 @@ def generate_launch_description():
         'log_level', default_value='info', description='log level'
     )
 
+    declare_bridge_params_cmd = DeclareLaunchArgument(
+        'bridge_params', default_value='', description='Extra parameters to pass to the bridge.'
+    )
+
     declare_world_cmd = DeclareLaunchArgument(
         'world', default_value=TextSubstitution(text=''),
         description='World name')
@@ -124,7 +129,8 @@ def generate_launch_description():
                           ('namespace', namespace),
                           ('use_composition', use_composition),
                           ('use_respawn', use_respawn),
-                          ('log_level', log_level), ])
+                          ('log_level', log_level),
+                          ('bridge_params', bridge_params), ])
 
     spawn_model_description = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -156,6 +162,7 @@ def generate_launch_description():
     ld.add_action(declare_use_composition_cmd)
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
+    ld.add_action(declare_bridge_params_cmd)
     ld.add_action(declare_world_cmd)
     ld.add_action(declare_file_cmd)
     ld.add_action(declare_model_string_cmd)
