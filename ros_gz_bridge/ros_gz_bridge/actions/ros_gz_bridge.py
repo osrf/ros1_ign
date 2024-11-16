@@ -169,24 +169,15 @@ class RosGzBridge(Action):
             bridge_params_pairs = simplified_bridge_params.split(',')
             parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
 
-        if hasattr(self.__use_composition, 'perform'):
-            string_use_composition = self.__use_composition.perform(context)
-        elif isinstance(self.__use_composition, list):
-            if hasattr(self.__use_composition[0], 'perform'):
-                string_use_composition = self.__use_composition[0].perform(context)
-        else:
-            string_use_composition = str(self.__use_composition)
-        if hasattr(self.__create_own_container, 'perform'):
-            string_create_own_container = self.__create_own_container.perform(context)
-        elif isinstance(self.__create_own_container, list):
-            if hasattr(self.__create_own_container[0], 'perform'):
-                string_create_own_container = self.__create_own_container[0].perform(context)
-        else:
-            string_create_own_container = str(self.__create_own_container)
+        if isinstance(self.__use_composition, list):
+            self.__use_composition = self.__use_composition[0]
+
+        if isinstance(self.__create_own_container, list):
+            self.__create_own_container = self.__create_own_container[0]
 
         # Standard node configuration
         load_nodes = GroupAction(
-            condition=IfCondition(PythonExpression(['not ', string_use_composition])),
+            condition=IfCondition(PythonExpression(['not ', self.__use_composition])),
             actions=[
                 Node(
                     package='ros_gz_bridge',
@@ -205,7 +196,7 @@ class RosGzBridge(Action):
         # Composable node with container configuration
         load_composable_nodes_with_container = ComposableNodeContainer(
             condition=IfCondition(
-                PythonExpression([string_use_composition, ' and ', string_create_own_container])
+                PythonExpression([self.__use_composition, ' and ', self.__create_own_container])
             ),
             name=self.__container_name,
             namespace='',
@@ -228,7 +219,7 @@ class RosGzBridge(Action):
         load_composable_nodes_without_container = LoadComposableNodes(
             condition=IfCondition(
                 PythonExpression(
-                    [string_use_composition, ' and not ', string_create_own_container]
+                    [self.__use_composition, ' and not ', self.__create_own_container]
                 )
             ),
             target_container=self.__container_name,
