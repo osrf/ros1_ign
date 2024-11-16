@@ -19,6 +19,7 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
+from ros_gz_bridge.actions import RosGzBridge
 
 
 def generate_launch_description():
@@ -117,20 +118,17 @@ def generate_launch_description():
         description='Whether the entity allows renaming or not'
     )
 
-    bridge_description = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [PathJoinSubstitution([FindPackageShare('ros_gz_bridge'),
-                                   'launch',
-                                   'ros_gz_bridge.launch.py'])]),
-        launch_arguments=[('bridge_name', bridge_name),
-                          ('config_file', config_file),
-                          ('container_name', container_name),
-                          ('create_own_container', create_own_container),
-                          ('namespace', namespace),
-                          ('use_composition', use_composition),
-                          ('use_respawn', use_respawn),
-                          ('log_level', log_level),
-                          ('bridge_params', bridge_params), ])
+    ros_gz_bridge_action = RosGzBridge(
+        bridge_name=bridge_name,
+        config_file=config_file,
+        container_name=container_name,
+        create_own_container=create_own_container,
+        namespace=namespace,
+        use_composition=use_composition,
+        use_respawn=use_respawn,
+        log_level=log_level,
+        bridge_params=bridge_params,
+    )
 
     spawn_model_description = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -170,7 +168,7 @@ def generate_launch_description():
     ld.add_action(declare_entity_name_cmd)
     ld.add_action(declare_allow_renaming_cmd)
     # Add the actions to launch all of the bridge + spawn_model nodes
-    ld.add_action(bridge_description)
+    ld.add_action(ros_gz_bridge_action)
     ld.add_action(spawn_model_description)
 
     return ld
