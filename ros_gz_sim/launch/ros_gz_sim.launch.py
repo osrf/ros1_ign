@@ -15,28 +15,13 @@
 """Launch gzsim + ros_gz_bridge in a component container."""
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution
-from launch_ros.substitutions import FindPackageShare
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, TextSubstitution
 from ros_gz_bridge.actions import RosGzBridge
 from ros_gz_sim.actions import GzServer
 
 
 def generate_launch_description():
-
-    bridge_name = LaunchConfiguration('bridge_name')
-    config_file = LaunchConfiguration('config_file')
-    container_name = LaunchConfiguration('container_name')
-    create_own_container = LaunchConfiguration('create_own_container')
-    namespace = LaunchConfiguration('namespace')
-    use_composition = LaunchConfiguration('use_composition')
-    use_respawn = LaunchConfiguration('use_respawn')
-    bridge_log_level = LaunchConfiguration('bridge_log_level')
-    bridge_params = LaunchConfiguration('bridge_params')
-
-    world_sdf_file = LaunchConfiguration('world_sdf_file')
-    world_sdf_string = LaunchConfiguration('world_sdf_string')
 
     declare_bridge_name_cmd = DeclareLaunchArgument(
         'bridge_name', description='Name of the bridge'
@@ -99,15 +84,15 @@ def generate_launch_description():
     )
 
     ros_gz_bridge_action = RosGzBridge(
-        bridge_name=bridge_name,
-        config_file=config_file,
-        container_name=container_name,
+        bridge_name=LaunchConfiguration('bridge_name'),
+        config_file=LaunchConfiguration('config_file'),
+        container_name=LaunchConfiguration('container_name'),
         create_own_container=str(False),
-        namespace=namespace,
-        use_composition=use_composition,
-        use_respawn=use_respawn,
-        log_level=bridge_log_level,
-        bridge_params=bridge_params,
+        namespace=LaunchConfiguration('namespace'),
+        use_composition=LaunchConfiguration('use_composition'),
+        use_respawn=LaunchConfiguration('use_respawn'),
+        log_level=LaunchConfiguration('bridge_log_level'),
+        bridge_params=LaunchConfiguration('bridge_params'),
     )
 
     # Create the launch description and populate
