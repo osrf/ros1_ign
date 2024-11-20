@@ -20,6 +20,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution
 from launch_ros.substitutions import FindPackageShare
 from ros_gz_bridge.actions import RosGzBridge
+from ros_gz_sim.actions import GzServer
 
 
 def generate_launch_description():
@@ -89,16 +90,13 @@ def generate_launch_description():
         description='SDF world string'
     )
 
-    gz_server_description = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [PathJoinSubstitution([FindPackageShare('ros_gz_sim'),
-                                   'launch',
-                                   'gz_server.launch.py'])]),
-        launch_arguments=[('world_sdf_file', world_sdf_file),
-                          ('world_sdf_string', world_sdf_string),
-                          ('container_name', container_name),
-                          ('create_own_container', create_own_container),
-                          ('use_composition', use_composition), ])
+    gz_server_action = GzServer(
+        world_sdf_file=LaunchConfiguration('world_sdf_file'),
+        world_sdf_string=LaunchConfiguration('world_sdf_string'),
+        container_name=LaunchConfiguration('container_name'),
+        create_own_container=LaunchConfiguration('create_own_container'),
+        use_composition=LaunchConfiguration('use_composition'),
+    )
 
     ros_gz_bridge_action = RosGzBridge(
         bridge_name=bridge_name,
@@ -128,7 +126,7 @@ def generate_launch_description():
     ld.add_action(declare_world_sdf_file_cmd)
     ld.add_action(declare_world_sdf_string_cmd)
     # Add the actions to launch all of the bridge + gz_server nodes
-    ld.add_action(gz_server_description)
+    ld.add_action(gz_server_action)
     ld.add_action(ros_gz_bridge_action)
 
     return ld
