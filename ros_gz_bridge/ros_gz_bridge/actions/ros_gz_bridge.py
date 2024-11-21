@@ -175,6 +175,9 @@ class RosGzBridge(Action):
         if isinstance(self.__create_own_container, list):
             self.__create_own_container = self.__create_own_container[0]
 
+        if isinstance(self.__use_respawn, list):
+            self.__use_respawn = self.__use_respawn[0]
+
         # Standard node configuration
         load_nodes = GroupAction(
             condition=IfCondition(PythonExpression(['not ', self.__use_composition])),
@@ -185,7 +188,7 @@ class RosGzBridge(Action):
                     name=self.__bridge_name,
                     namespace=self.__namespace,
                     output='screen',
-                    respawn=self.__use_respawn,
+                    respawn=bool(self.__use_respawn),
                     respawn_delay=2.0,
                     parameters=[{'config_file': self.__config_file, **parsed_bridge_params}],
                     arguments=['--ros-args', '--log-level', self.__log_level],
