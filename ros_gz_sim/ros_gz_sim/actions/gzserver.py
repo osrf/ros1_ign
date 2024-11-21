@@ -23,7 +23,7 @@ from launch.conditions import IfCondition
 from launch.frontend import Entity, expose_action, Parser
 from launch.launch_context import LaunchContext
 from launch.some_substitutions_type import SomeSubstitutionsType
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import PythonExpression
 from launch_ros.actions import ComposableNodeContainer, LoadComposableNodes, Node
 from launch_ros.descriptions import ComposableNode
 
@@ -125,8 +125,8 @@ class GzServer(Action):
                     package='ros_gz_sim',
                     executable='gzserver',
                     output='screen',
-                    parameters=[{'world_sdf_file': LaunchConfiguration('world_sdf_file'),
-                                 'world_sdf_string': LaunchConfiguration('world_sdf_string')}],
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
                 ),
             ],
         )
@@ -145,8 +145,8 @@ class GzServer(Action):
                     package='ros_gz_sim',
                     plugin='ros_gz_sim::GzServer',
                     name='gz_server',
-                    parameters=[{'world_sdf_file': LaunchConfiguration('world_sdf_file'),
-                                 'world_sdf_string': LaunchConfiguration('world_sdf_string')}],
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
                     extra_arguments=[{'use_intra_process_comms': True}],
                 ),
             ],
@@ -166,8 +166,8 @@ class GzServer(Action):
                     package='ros_gz_sim',
                     plugin='ros_gz_sim::GzServer',
                     name='gz_server',
-                    parameters=[{'world_sdf_file': LaunchConfiguration('world_sdf_file'),
-                                 'world_sdf_string': LaunchConfiguration('world_sdf_string')}],
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
                     extra_arguments=[{'use_intra_process_comms': True}],
                 ),
             ],
