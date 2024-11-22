@@ -1,9 +1,6 @@
 # IMU configuration.
-- ros_topic_name: "/imu"
-  gz_topic_name: "/imu"
+- topic_name: "/imu"
   ros_type_name: "sensor_msgs/msg/Imu"
   gz_type_name: "gz.msgs.IMU"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS
