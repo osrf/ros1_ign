@@ -16,10 +16,13 @@ Publishes fluid pressure readings.
 
     ros2 launch ros_gz_sim_demos air_pressure.launch.xml
 
-You can subscribe to receive the data with:
+This demo also shows the use of custom QoS parameters. The sensor data is published as as "best-effort", so trying to subscribe to "reliable" data won't work. See the difference between:
 
-    ros2 topic echo /air_pressure
+    ros2 topic echo /air_pressure --qos-reliability best_effort
 
+And
+
+    ros2 topic echo /air_pressure --qos-reliability reliable
 
 ![](images/air_pressure_demo.png)
 
