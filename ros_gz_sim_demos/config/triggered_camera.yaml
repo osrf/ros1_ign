@@ -1,27 +1,18 @@
 # triggered_cammera configuration.
-- ros_topic_name: "/camera"
-  gz_topic_name: "/camera"
+- topic_name: "/camera"
   ros_type_name: "sensor_msgs/msg/Image"
   gz_type_name: "gz.msgs.Image"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/camera_info"
-  gz_topic_name: "/camera_info"
+- topic_name: "/camera_info"
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "gz.msgs.CameraInfo"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/camera/trigger"
-  gz_topic_name: "/camera/trigger"
+- topic_name: "/camera/trigger"
   ros_type_name: "std_msgs/msg/Bool"
   gz_type_name: "gz.msgs.Boolean"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: ROS_TO_GZ
