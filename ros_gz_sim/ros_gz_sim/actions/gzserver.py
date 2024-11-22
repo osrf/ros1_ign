@@ -18,13 +18,14 @@ from typing import List
 from typing import Optional
 
 from launch.action import Action
-from launch.actions import IncludeLaunchDescription
+from launch.actions import GroupAction
+from launch.conditions import IfCondition
 from launch.frontend import Entity, expose_action, Parser
 from launch.launch_context import LaunchContext
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.some_substitutions_type import SomeSubstitutionsType
-from launch.substitutions import PathJoinSubstitution
-from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PythonExpression
+from launch_ros.actions import ComposableNodeContainer, LoadComposableNodes, Node
+from launch_ros.descriptions import ComposableNode
 
 
 @expose_action('gz_server')
@@ -110,15 +111,70 @@ class GzServer(Action):
 
     def execute(self, context: LaunchContext) -> Optional[List[Action]]:
         """Execute the action."""
-        gz_server_description = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [PathJoinSubstitution([FindPackageShare('ros_gz_sim'),
-                                       'launch',
-                                       'gz_server.launch.py'])]),
-            launch_arguments=[('world_sdf_file', self.__world_sdf_file),
-                              ('world_sdf_string', self.__world_sdf_string),
-                              ('container_name',   self.__container_name),
-                              ('create_own_container', self.__create_own_container),
-                              ('use_composition',  self.__use_composition), ])
+        if isinstance(self.__use_composition, list):
+            self.__use_composition = self.__use_composition[0]
 
-        return [gz_server_description]
+        if isinstance(self.__create_own_container, list):
+            self.__create_own_container = self.__create_own_container[0]
+
+        # Standard node configuration
+        load_nodes = GroupAction(
+            condition=IfCondition(PythonExpression(['not ', self.__use_composition])),
+            actions=[
+                Node(
+                    package='ros_gz_sim',
+                    executable='gzserver',
+                    output='screen',
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
+                ),
+            ],
+        )
+
+        # Composable node with container configuration
+        load_composable_nodes_with_container = ComposableNodeContainer(
+            condition=IfCondition(
+                PythonExpression([self.__use_composition, ' and ', self.__create_own_container])
+            ),
+            name=self.__container_name,
+            namespace='',
+            package='rclcpp_components',
+            executable='component_container',
+            composable_node_descriptions=[
+                ComposableNode(
+                    package='ros_gz_sim',
+                    plugin='ros_gz_sim::GzServer',
+                    name='gz_server',
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
+                    extra_arguments=[{'use_intra_process_comms': True}],
+                ),
+            ],
+            output='screen',
+        )
+
+        # Composable node without container configuration
+        load_composable_nodes_without_container = LoadComposableNodes(
+            condition=IfCondition(
+                PythonExpression(
+                    [self.__use_composition, ' and not ', self.__create_own_container]
+                )
+            ),
+            target_container=self.__container_name,
+            composable_node_descriptions=[
+                ComposableNode(
+                    package='ros_gz_sim',
+                    plugin='ros_gz_sim::GzServer',
+                    name='gz_server',
+                    parameters=[{'world_sdf_file': self.__world_sdf_file,
+                                 'world_sdf_string': self.__world_sdf_string}],
+                    extra_arguments=[{'use_intra_process_comms': True}],
+                ),
+            ],
+        )
+
+        return [
+            load_nodes,
+            load_composable_nodes_with_container,
+            load_composable_nodes_without_container
+        ]
