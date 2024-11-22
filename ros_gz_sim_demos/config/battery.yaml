@@ -1,18 +1,12 @@
 # Battery configuration.
-- ros_topic_name: "/model/vehicle_blue/cmd_vel"
-  gz_topic_name: "/model/vehicle_blue/cmd_vel"
+- topic_name: "/model/vehicle_blue/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: ROS_TO_GZ
 
-- ros_topic_name: "/model/vehicle_blue/battery/linear_battery/state"
-  gz_topic_name: "/model/vehicle_blue/battery/linear_battery/state"
+- topic_name: "/model/vehicle_blue/battery/linear_battery/state"
   ros_type_name: "sensor_msgs/msg/BatteryState"
   gz_type_name: "gz.msgs.BatteryState"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS

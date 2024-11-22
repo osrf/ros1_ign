@@ -32,7 +32,7 @@ And
 
 Get the current state of a battery.
 
-    ros2 launch ros_gz_sim_demos battery.launch.xml
+    ros2 launch ros_gz_sim_demos battery.launch.py
 
 Then send a command so the vehicle moves and drains the battery.
 
