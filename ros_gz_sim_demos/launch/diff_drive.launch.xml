@@ -1,6 +1,14 @@
 <launch>
-  <gz_server world_sdf_file="diff_drive.sdf" use_composition="True" create_own_container="True" />
-  <ros_gz_bridge bridge_name="ros_gz_bridge" config_file="$(find-pkg-share ros_gz_sim_demos)/config/diff_drive.yaml" use_composition="True" />
+  <gz_server
+    world_sdf_file="diff_drive.sdf"
+    use_composition="True"
+    create_own_container="True" />
+  <ros_gz_bridge
+    bridge_name="ros_gz_bridge"
+    config_file="$(find-pkg-share ros_gz_sim_demos)/config/diff_drive.yaml"
+    use_composition="True"
+    bridge_params="'qos_overrides./model/vehicle_blue.subscriber.reliability': 'reliable',
+                   'qos_overrides./model/vehicle_green.subscriber.reliability': 'reliable'" />
   <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/diff_drive.rviz" />
   <executable cmd="gz sim -g" />
 </launch>

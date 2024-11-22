@@ -1,36 +1,24 @@
 # Diff drive configuration.
-- ros_topic_name: "/model/vehicle_blue/cmd_vel"
-  gz_topic_name: "/model/vehicle_blue/cmd_vel"
+- topic_name: "/model/vehicle_blue/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: ROS_TO_GZ
 
-- ros_topic_name: "/model/vehicle_blue/odometry"
-  gz_topic_name: "/model/vehicle_blue/odometry"
+- topic_name: "/model/vehicle_blue/odometry"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS
 
-- ros_topic_name: "/model/vehicle_green/cmd_vel"
-  gz_topic_name: "/model/vehicle_green/cmd_vel"
+- topic_name: "/model/vehicle_green/cmd_vel"
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "gz.msgs.Twist"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: ROS_TO_GZ
 
-- ros_topic_name: "/model/vehicle_green/odometry"
-  gz_topic_name: "/model/vehicle_green/odometry"
+- topic_name: "/model/vehicle_green/odometry"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
-  subscriber_queue: 5
-  publisher_queue: 6
-  lazy: false
+  lazy: true
   direction: GZ_TO_ROS
