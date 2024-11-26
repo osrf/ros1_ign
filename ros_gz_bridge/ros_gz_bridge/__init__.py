@@ -59,7 +59,7 @@ class MessageMapping:
         return f'gz::msgs::{self.gz_message_name}'
 
     def unique(self):
-        return f'{self.gz_message_name.lower()}_{self.ros2_message_name.lower()}'
+        return f'{self.gz_message_name.lower()}_{self.ros2_package_name}_{self.ros2_message_name.lower()}'
 
 
 def mappings(gz_msgs_ver):
