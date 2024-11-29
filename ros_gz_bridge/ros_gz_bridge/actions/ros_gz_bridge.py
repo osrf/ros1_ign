@@ -178,6 +178,12 @@ class RosGzBridge(Action):
         if isinstance(self.__use_respawn, list):
             self.__use_respawn = self.__use_respawn[0]
 
+        for key, value in parsed_bridge_params.items():
+            if value == 'True' or value == 'true':
+                parsed_bridge_params[key] = True
+            if value == 'False' or value == 'false':
+                parsed_bridge_params[key] = False
+
         # Standard node configuration
         load_nodes = GroupAction(
             condition=IfCondition(PythonExpression(['not ', self.__use_composition])),
