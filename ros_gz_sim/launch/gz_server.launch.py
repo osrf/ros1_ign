@@ -14,10 +14,52 @@
 
 """Launch gz_server in a component container."""
 
+import os
+
+from ament_index_python.packages import get_package_share_directory
+from catkin_pkg.package import InvalidPackage, PACKAGE_MANIFEST_FILENAME, parse_package
+from ros2pkg.api import get_package_names
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.substitutions import LaunchConfiguration, TextSubstitution
 from ros_gz_sim.actions import GzServer
+
+
+class GazeboRosPaths:
+
+    @staticmethod
+    def get_paths():
+        gazebo_model_path = []
+        gazebo_plugin_path = []
+        gazebo_media_path = []
+
+        for package_name in get_package_names():
+            package_share_path = get_package_share_directory(package_name)
+            package_file_path = os.path.join(package_share_path, PACKAGE_MANIFEST_FILENAME)
+            if os.path.isfile(package_file_path):
+                try:
+                    package = parse_package(package_file_path)
+                except InvalidPackage:
+                    continue
+                for export in package.exports:
+                    if export.tagname == 'gazebo_ros':
+                        if 'gazebo_model_path' in export.attributes:
+                            xml_path = export.attributes['gazebo_model_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_model_path.append(xml_path)
+                        if 'plugin_path' in export.attributes:
+                            xml_path = export.attributes['plugin_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_plugin_path.append(xml_path)
+                        if 'gazebo_media_path' in export.attributes:
+                            xml_path = export.attributes['gazebo_media_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_media_path.append(xml_path)
+
+        gazebo_model_path = os.pathsep.join(gazebo_model_path + gazebo_media_path)
+        gazebo_plugin_path = os.pathsep.join(gazebo_plugin_path)
+
+        return gazebo_model_path, gazebo_plugin_path
 
 
 def generate_launch_description():
@@ -38,6 +80,21 @@ def generate_launch_description():
         'use_composition', default_value='False',
         description='Use composed bringup if True')
 
+    model_paths, plugin_paths = GazeboRosPaths.get_paths()
+    system_plugin_path_env = SetEnvironmentVariable(
+        'GZ_SIM_SYSTEM_PLUGIN_PATH',
+        os.pathsep.join([
+            os.environ.get('GZ_SIM_SYSTEM_PLUGIN_PATH', default=''),
+            os.environ.get('LD_LIBRARY_PATH', default=''),
+            plugin_paths,
+        ]))
+    resource_path_env = SetEnvironmentVariable(
+        'GZ_SIM_RESOURCE_PATH',
+        os.pathsep.join([
+            os.environ.get('GZ_SIM_RESOURCE_PATH', default=''),
+            model_paths,
+        ]))
+
     gz_server_action = GzServer(
         world_sdf_file=LaunchConfiguration('world_sdf_file'),
         world_sdf_string=LaunchConfiguration('world_sdf_string'),
@@ -55,6 +112,8 @@ def generate_launch_description():
     ld.add_action(declare_container_name_cmd)
     ld.add_action(declare_create_own_container_cmd)
     ld.add_action(declare_use_composition_cmd)
+    ld.add_action(system_plugin_path_env)
+    ld.add_action(resource_path_env)
     # Add the gz_server action
     ld.add_action(gz_server_action)
 
