@@ -32,6 +32,21 @@ from launch_ros.descriptions import ComposableNode
 from ros2pkg.api import get_package_names
 
 
+"""
+Search for model, plugin and media paths exported by packages.
+
+e.g.  <export>
+          <gazebo_ros gazebo_model_path="${prefix}/../"/>
+          <gazebo_ros gazebo_media_path="${prefix}/../"/>
+      </export>
+${prefix} is replaced by package's share directory in install.
+
+Thus the required directory needs to be installed from CMakeLists.txt
+e.g.  install(DIRECTORY models
+          DESTINATION share/${PROJECT_NAME})
+"""
+
+
 class GazeboRosPaths:
 
     @staticmethod
