@@ -14,11 +14,14 @@
 
 """Module for the GzServer action."""
 
+import os
 from typing import List
 from typing import Optional
 
+from ament_index_python.packages import get_package_share_directory
+from catkin_pkg.package import InvalidPackage, PACKAGE_MANIFEST_FILENAME, parse_package
 from launch.action import Action
-from launch.actions import GroupAction
+from launch.actions import GroupAction, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.frontend import Entity, expose_action, Parser
 from launch.launch_context import LaunchContext
@@ -26,6 +29,59 @@ from launch.some_substitutions_type import SomeSubstitutionsType
 from launch.substitutions import PythonExpression
 from launch_ros.actions import ComposableNodeContainer, LoadComposableNodes, Node
 from launch_ros.descriptions import ComposableNode
+from ros2pkg.api import get_package_names
+
+
+"""
+Search for model, plugin and media paths exported by packages.
+
+e.g.  <export>
+          <gazebo_ros gazebo_model_path="${prefix}/../"/>
+          <gazebo_ros gazebo_media_path="${prefix}/../"/>
+      </export>
+${prefix} is replaced by package's share directory in install.
+
+Thus the required directory needs to be installed from CMakeLists.txt
+e.g.  install(DIRECTORY models
+          DESTINATION share/${PROJECT_NAME})
+"""
+
+
+class GazeboRosPaths:
+
+    @staticmethod
+    def get_paths():
+        gazebo_model_path = []
+        gazebo_plugin_path = []
+        gazebo_media_path = []
+
+        for package_name in get_package_names():
+            package_share_path = get_package_share_directory(package_name)
+            package_file_path = os.path.join(package_share_path, PACKAGE_MANIFEST_FILENAME)
+            if os.path.isfile(package_file_path):
+                try:
+                    package = parse_package(package_file_path)
+                except InvalidPackage:
+                    continue
+                for export in package.exports:
+                    if export.tagname == 'gazebo_ros':
+                        if 'gazebo_model_path' in export.attributes:
+                            xml_path = export.attributes['gazebo_model_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_model_path.append(xml_path)
+                        if 'plugin_path' in export.attributes:
+                            xml_path = export.attributes['plugin_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_plugin_path.append(xml_path)
+                        if 'gazebo_media_path' in export.attributes:
+                            xml_path = export.attributes['gazebo_media_path']
+                            xml_path = xml_path.replace('${prefix}', package_share_path)
+                            gazebo_media_path.append(xml_path)
+
+        gazebo_model_path = os.pathsep.join(gazebo_model_path + gazebo_media_path)
+        gazebo_plugin_path = os.pathsep.join(gazebo_plugin_path)
+
+        return gazebo_model_path, gazebo_plugin_path
 
 
 @expose_action('gz_server')
@@ -117,6 +173,21 @@ class GzServer(Action):
         if isinstance(self.__create_own_container, list):
             self.__create_own_container = self.__create_own_container[0]
 
+        model_paths, plugin_paths = GazeboRosPaths.get_paths()
+        system_plugin_path_env = SetEnvironmentVariable(
+            'GZ_SIM_SYSTEM_PLUGIN_PATH',
+            os.pathsep.join([
+                os.environ.get('GZ_SIM_SYSTEM_PLUGIN_PATH', default=''),
+                os.environ.get('LD_LIBRARY_PATH', default=''),
+                plugin_paths,
+            ]))
+        resource_path_env = SetEnvironmentVariable(
+            'GZ_SIM_RESOURCE_PATH',
+            os.pathsep.join([
+                os.environ.get('GZ_SIM_RESOURCE_PATH', default=''),
+                model_paths,
+            ]))
+
         # Standard node configuration
         load_nodes = GroupAction(
             condition=IfCondition(PythonExpression(['not ', self.__use_composition])),
@@ -174,6 +245,8 @@ class GzServer(Action):
         )
 
         return [
+            system_plugin_path_env,
+            resource_path_env,
             load_nodes,
             load_composable_nodes_with_container,
             load_composable_nodes_without_container
