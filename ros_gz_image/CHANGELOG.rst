@@ -2,6 +2,7 @@
 Changelog for package ros1_ign_image
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 1.0.7 (2024-11-08)
 ------------------
 
@@ -19,6 +20,28 @@ Changelog for package ros1_ign_image
 
 1.0.2 (2024-07-03)
 ------------------
+=======
+2.1.2 (2024-10-31)
+------------------
+
+2.1.1 (2024-10-14)
+------------------
+
+2.1.0 (2024-09-12)
+------------------
+
+2.0.1 (2024-08-29)
+------------------
+
+2.0.0 (2024-07-22)
+------------------
+
+1.0.1 (2024-07-03)
+------------------
+* Merge pull request `#571 <https://github.com/gazebosim/ros_gz//issues/571>`_ from azeey/jazzy_to_ros2
+  Merge jazzy ➡️  ros2
+* Merge jazzy into ros2
+>>>>>>> 63b651a (Garden EOL (#662))
 * Merge pull request `#569 <https://github.com/gazebosim/ros_gz//issues/569>`_ from azeey/iron_to_jazzy
   Merge iron ➡️  jazzy
 * Merge iron into jazzy
