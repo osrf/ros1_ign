@@ -1,8 +1,8 @@
 <launch>
   <gz_server
     world_sdf_file="sensors.sdf"
-    use_composition="True"
-    create_own_container="True" />
+    use_composition="true"
+    create_own_container="true" />
   <ros_gz_bridge
     bridge_name="ros_gz_bridge"
     config_file="$(find-pkg-share ros_gz_sim_demos)/config/air_pressure.yaml"
