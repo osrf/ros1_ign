@@ -35,7 +35,11 @@ template<typename RosResT>
 bool
 send_response_on_error(RosResT & ros_response);
 
+<<<<<<< HEAD
 template<typename RosServiceT, typename IgnRequestT, typename IgnReplyT>
+=======
+template<typename RosServiceT, typename GzRequestT, typename GzReplyT>
+>>>>>>> 63b651a (Garden EOL (#662))
 class ServiceFactory : public ServiceFactoryInterface
 {
 public:
@@ -60,12 +64,20 @@ public:
         std::shared_ptr<rmw_request_id_t> reqid,
         std::shared_ptr<typename RosServiceT::Request> ros_req)
       {
+<<<<<<< HEAD
         std::function<void(const IgnReplyT &, bool)> callback;
+=======
+        std::function<void(const GzReplyT &, bool)> callback;
+>>>>>>> 63b651a (Garden EOL (#662))
         callback = [
           srv_handle = std::move(srv_handle),
           reqid
         ](
+<<<<<<< HEAD
           const IgnReplyT & reply,
+=======
+          const GzReplyT & reply,
+>>>>>>> 63b651a (Garden EOL (#662))
           const bool result)
         {
           typename RosServiceT::Response ros_res;
@@ -77,7 +89,11 @@ public:
           convert_gz_to_ros(reply, ros_res);
           srv_handle->send_response(*reqid, ros_res);
         };
+<<<<<<< HEAD
         IgnRequestT gz_req;
+=======
+        GzRequestT gz_req;
+>>>>>>> 63b651a (Garden EOL (#662))
         convert_ros_to_gz(*ros_req, gz_req);
         gz_node->Request(
           service_name,

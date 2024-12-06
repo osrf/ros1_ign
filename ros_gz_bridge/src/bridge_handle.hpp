@@ -101,6 +101,12 @@ protected:
 
   /// \brief Typed factory used to create publishers/subscribers
   std::shared_ptr<FactoryInterface> factory_;
+<<<<<<< HEAD
+=======
+
+  /// \brief Override the header.stamp field of the outgoing messages with the wall time
+  bool override_timestamps_with_wall_time_ = false;
+>>>>>>> 63b651a (Garden EOL (#662))
 };
 
 }  // namespace ros_gz_bridge

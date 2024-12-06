@@ -24,6 +24,7 @@
 #include <rclcpp/node.hpp>
 #include "ros_gz_bridge/bridge_config.hpp"
 
+<<<<<<< HEAD
 // Dataframe is available from versions 8.4.0 (fortress) forward
 // This can be removed when the minimum supported version passes 8.4.0
 #if (IGNITION_MSGS_MAJOR_VERSION > 8) || \
@@ -43,6 +44,8 @@
 #define HAVE_MATERIALCOLOR true
 #endif
 
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 namespace ros_gz_bridge
 {
 /// Forward declarations
@@ -56,7 +59,11 @@ public:
   /// \param[in] options options control creation of the ROS 2 node
   explicit RosGzBridge(const rclcpp::NodeOptions & options = rclcpp::NodeOptions());
 
+<<<<<<< HEAD
   /// \brief Add a new ROS-IGN bridge to the node
+=======
+  /// \brief Add a new ROS-GZ bridge to the node
+>>>>>>> 63b651a (Garden EOL (#662))
   /// \param[in] config Parameters to control creation of a new bridge
   void add_bridge(const BridgeConfig & config);
 

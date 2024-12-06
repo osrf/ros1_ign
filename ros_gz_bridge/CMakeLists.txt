@@ -14,6 +14,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(yaml_cpp_vendor REQUIRED)
+<<<<<<< HEAD
 
 # TODO(CH3): Deprecated. Remove on tock.
 if("$ENV{GZ_VERSION}" STREQUAL "" AND NOT "$ENV{IGNITION_VERSION}" STREQUAL "")
@@ -66,6 +67,20 @@ set(GZ_MSGS_VERSION_MAJOR ${${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}_VERSION_MAJOR
 set(GZ_MSGS_VERSION_MINOR ${${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}_VERSION_MINOR})
 set(GZ_MSGS_VERSION_PATCH ${${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}_VERSION_PATCH})
 set(GZ_MSGS_VERSION_FULL ${GZ_MSGS_VERSION_MAJOR}.${GZ_MSGS_VERSION_MINOR}.${GZ_MSGS_VERSION_PATCH})
+=======
+find_package(yaml-cpp REQUIRED)
+
+find_package(gz_transport_vendor REQUIRED)
+find_package(gz-transport REQUIRED)
+
+find_package(gz_msgs_vendor REQUIRED)
+find_package(gz-msgs REQUIRED)
+
+# Install the python module for this package
+ament_python_install_package(${PROJECT_NAME})
+
+set(GZ_MSGS_VERSION_FULL ${gz-msgs_VERSION})
+>>>>>>> 63b651a (Garden EOL (#662))
 
 set(BRIDGE_MESSAGE_TYPES
   builtin_interfaces
@@ -138,6 +153,7 @@ add_library(${bridge_lib}
 )
 
 target_link_libraries(${bridge_lib}
+<<<<<<< HEAD
   ${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}::core
   ${GZ_TARGET_PREFIX}-transport${GZ_TRANSPORT_VER}::core
 )
@@ -147,6 +163,20 @@ ament_target_dependencies(${bridge_lib}
   rclcpp_components
   yaml_cpp_vendor
   ${BRIDGE_MESSAGE_TYPES}
+=======
+  PUBLIC
+    gz-msgs::core
+    gz-transport::core
+  PRIVATE
+    yaml-cpp::yaml-cpp
+)
+
+ament_target_dependencies(${bridge_lib}
+  PUBLIC
+    rclcpp
+    rclcpp_components
+    ${BRIDGE_MESSAGE_TYPES}
+>>>>>>> 63b651a (Garden EOL (#662))
 )
 
 target_include_directories(${bridge_lib}
@@ -158,11 +188,14 @@ target_include_directories(${bridge_lib}
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/generated>"
 )
 
+<<<<<<< HEAD
 target_link_libraries(${bridge_lib}
   ${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}::core
   ${GZ_TARGET_PREFIX}-transport${GZ_TRANSPORT_VER}::core
 )
 
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 rclcpp_components_register_node(
   ${bridge_lib}
   PLUGIN ros_gz_bridge::RosGzBridge
@@ -178,6 +211,14 @@ install(
   DESTINATION include/${PROJECT_NAME}
 )
 
+<<<<<<< HEAD
+=======
+install(
+  DIRECTORY launch/
+  DESTINATION share/${PROJECT_NAME}/launch
+)
+
+>>>>>>> 63b651a (Garden EOL (#662))
 set(bridge_executables
   parameter_bridge
   static_bridge
@@ -213,7 +254,11 @@ if(BUILD_TESTING)
     ${PROJECT_SOURCE_DIR}/src/convert/rcl_interfaces_TEST.cpp
   )
   target_link_libraries(test_rcl_interfaces
+<<<<<<< HEAD
     ${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}::core
+=======
+    gz-msgs::core
+>>>>>>> 63b651a (Garden EOL (#662))
     ${rcl_interfaces_TARGETS}
     gtest
     gtest_main
@@ -248,8 +293,13 @@ if(BUILD_TESTING)
   )
   target_link_libraries(test_utils
     ${GTEST_LIBRARIES}
+<<<<<<< HEAD
     ${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER}::core
     ${GZ_TARGET_PREFIX}-transport${GZ_TRANSPORT_VER}::core
+=======
+    gz-msgs::core
+    gz-transport::core
+>>>>>>> 63b651a (Garden EOL (#662))
   )
   ament_target_dependencies(test_utils
     rclcpp
@@ -361,9 +411,16 @@ ament_export_targets(export_${PROJECT_NAME})
 # specific order: dependents before dependencies
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(rclcpp_components)
+<<<<<<< HEAD
 ament_export_dependencies(${GZ_TARGET_PREFIX}-msgs${GZ_MSGS_VER})
 ament_export_dependencies(${GZ_TARGET_PREFIX}-transport${GZ_TRANSPORT_VER})
 ament_export_dependencies(yaml_cpp_vendor)
+=======
+ament_export_dependencies(gz_msgs_vendor)
+ament_export_dependencies(gz-msgs)
+ament_export_dependencies(gz_transport_vendor)
+ament_export_dependencies(gz-transport)
+>>>>>>> 63b651a (Garden EOL (#662))
 ament_export_dependencies(${BRIDGE_MESSAGE_TYPES})
 
 ament_package()

@@ -36,6 +36,10 @@ MAPPINGS = {
         Mapping('PoseArray', 'Pose_V'),
         Mapping('PoseStamped', 'Pose'),
         Mapping('PoseWithCovariance', 'PoseWithCovariance'),
+<<<<<<< HEAD
+=======
+        Mapping('PoseWithCovarianceStamped', 'PoseWithCovariance'),
+>>>>>>> 63b651a (Garden EOL (#662))
         Mapping('Quaternion', 'Quaternion'),
         Mapping('Transform', 'Pose'),
         Mapping('TransformStamped', 'Pose'),
@@ -61,12 +65,20 @@ MAPPINGS = {
         Mapping('Altimeter', 'Altimeter'),
         Mapping('Contact', 'Contact'),
         Mapping('Contacts', 'Contacts'),
+<<<<<<< HEAD
+=======
+        Mapping('Dataframe', 'Dataframe'),
+>>>>>>> 63b651a (Garden EOL (#662))
         Mapping('Entity', 'Entity'),
         Mapping('EntityWrench', 'EntityWrench'),
         Mapping('Float32Array', 'Float_V'),
         Mapping('GuiCamera', 'GUICamera'),
         Mapping('JointWrench', 'JointWrench'),
         Mapping('Light', 'Light'),
+<<<<<<< HEAD
+=======
+        Mapping('MaterialColor', 'MaterialColor'),
+>>>>>>> 63b651a (Garden EOL (#662))
         Mapping('ParamVec', 'Param'),
         Mapping('ParamVec', 'Param_V'),
         Mapping('SensorNoise', 'SensorNoise'),
@@ -114,6 +126,7 @@ MAPPINGS = {
         Mapping('Detection3D', 'AnnotatedOriented3DBox'),
     ],
 }
+<<<<<<< HEAD
 
 MAPPINGS_8_4_0 = {
     'ros_gz_interfaces': [
@@ -126,3 +139,5 @@ MAPPINGS_10_1_0 = {
         Mapping('MaterialColor', 'MaterialColor'),
     ],
 }
+=======
+>>>>>>> 63b651a (Garden EOL (#662))

@@ -1,5 +1,6 @@
 <package format="3">
   <name>ros_gz_sim_demos</name>
+<<<<<<< HEAD
   <version>0.244.16</version>
   <description>Demos using Gazebo Sim simulation with ROS.</description>
   <license>Apache 2.0</license>
@@ -12,6 +13,19 @@
   <exec_depend condition="$GZ_VERSION == '' and $IGNITION_VERSION == ''">ignition-gazebo6</exec_depend>
   <!-- Edifice -->
   <exec_depend condition="$GZ_VERSION == edifice or $IGNITION_VERSION == edifice">ignition-gazebo5</exec_depend>
+=======
+  <version>2.1.2</version>
+  <description>Demos using Gazebo Sim simulation with ROS.</description>
+  <license>Apache 2.0</license>
+  <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
+  <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+
+  <author>Louise Poubel</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>gz_sim_vendor</depend>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <exec_depend>image_transport_plugins</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>

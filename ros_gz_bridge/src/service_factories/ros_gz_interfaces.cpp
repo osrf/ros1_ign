@@ -35,15 +35,24 @@ get_service_factory__ros_gz_interfaces(
 {
   if (
     ros_type_name == "ros_gz_interfaces/srv/ControlWorld" &&
+<<<<<<< HEAD
     (gz_req_type_name.empty() || gz_req_type_name == "ignition.msgs.WorldControl") &&
     (gz_rep_type_name.empty() || gz_rep_type_name == "ignition.msgs.Boolean"))
+=======
+    (gz_req_type_name.empty() || gz_req_type_name == "gz.msgs.WorldControl") &&
+    (gz_rep_type_name.empty() || gz_rep_type_name == "gz.msgs.Boolean"))
+>>>>>>> 63b651a (Garden EOL (#662))
   {
     return std::make_shared<
       ServiceFactory<
         ros_gz_interfaces::srv::ControlWorld,
         gz::msgs::WorldControl,
         gz::msgs::Boolean>
+<<<<<<< HEAD
     >(ros_type_name, "ignition.msgs.WorldControl", "ignition.msgs.Boolean");
+=======
+    >(ros_type_name, "gz.msgs.WorldControl", "gz.msgs.Boolean");
+>>>>>>> 63b651a (Garden EOL (#662))
   }
 
   return nullptr;

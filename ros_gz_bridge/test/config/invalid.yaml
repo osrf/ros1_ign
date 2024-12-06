@@ -1,0 +1,8 @@
+ros_topic_name: "ros_chatter"
+gz_topic_name: "gz_chatter"
+ros_type_name: "std_msgs/msg/String"
+gz_type_name: "ignition.msgs.StringMsg"
+subscriber_queue: 5
+publisher_queue: 6
+lazy: true
+direction: ROS_TO_GZ

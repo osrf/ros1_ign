@@ -166,6 +166,7 @@ convert_gz_to_ros(
 
   ros_msg.is_bigendian = false;
   ros_msg.step = ros_msg.width * num_channels * octets_per_channel;
+<<<<<<< HEAD
 
   auto count = ros_msg.step * ros_msg.height;
   ros_msg.data.resize(ros_msg.step * ros_msg.height);
@@ -173,6 +174,13 @@ convert_gz_to_ros(
     gz_msg.data().begin(),
     gz_msg.data().begin() + count,
     ros_msg.data.begin());
+=======
+  ros_msg.data.resize(ros_msg.step * ros_msg.height);
+
+  // Prefer memcpy over std::copy for performance reasons,
+  // see https://github.com/gazebosim/ros_gz/pull/565
+  memcpy(ros_msg.data.data(), gz_msg.data().c_str(), gz_msg.data().size());
+>>>>>>> 63b651a (Garden EOL (#662))
 }
 
 template<>
@@ -520,7 +528,11 @@ convert_gz_to_ros(
   ros_msg.longitude = gz_msg.longitude_deg();
   ros_msg.altitude = gz_msg.altitude();
 
+<<<<<<< HEAD
   // position_covariance is not supported in Ignition::Msgs::NavSat.
+=======
+  // position_covariance is not supported in gz::msgs::NavSat.
+>>>>>>> 63b651a (Garden EOL (#662))
   ros_msg.position_covariance_type = sensor_msgs::msg::NavSatFix::COVARIANCE_TYPE_UNKNOWN;
   ros_msg.status.status = sensor_msgs::msg::NavSatStatus::STATUS_FIX;
 }

@@ -10,6 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+<<<<<<< HEAD
           - docker-image: "ubuntu:22.04"
             gz-version: "fortress"
             ros-distro: "humble"
@@ -19,6 +20,11 @@ jobs:
           - docker-image: "ubuntu:22.04"
             gz-version: "harmonic"
             ros-distro: "humble"
+=======
+          - docker-image: "ubuntu:24.04"
+            gz-version: "harmonic"
+            ros-distro: "rolling"
+>>>>>>> 63b651a (Garden EOL (#662))
     container:
       image: ${{ matrix.docker-image }}
     steps:
@@ -30,9 +36,12 @@ jobs:
           DOCKER_IMAGE: ${{ matrix.docker-image }}
           GZ_VERSION: ${{ matrix.gz-version  }}
           ROS_DISTRO: ${{ matrix.ros-distro }}
+<<<<<<< HEAD
       - name: Build sdformat_urdf from source
         uses: actions/checkout@v4
         if: ${{ matrix.gz-version  }} == "garden"
         with:
           repository: ros/sdformat_urdf
           ref: humble
+=======
+>>>>>>> 63b651a (Garden EOL (#662))

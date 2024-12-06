@@ -63,10 +63,15 @@ def generate_launch_description():
     spawn = Node(
         package='ros_gz_sim',
         executable='create',
+<<<<<<< HEAD
         arguments=[
             '-name', 'rrbot',
             '-topic', 'robot_description',
         ],
+=======
+        parameters=[{'name': 'rrbot',
+                    'topic': 'robot_description'}],
+>>>>>>> 63b651a (Garden EOL (#662))
         output='screen',
     )
 

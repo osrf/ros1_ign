@@ -58,6 +58,17 @@ void compareTestMsg(const std::shared_ptr<std_msgs::msg::Bool> & _msg)
   EXPECT_EQ(expected_msg.data, _msg->data);
 }
 
+<<<<<<< HEAD
+=======
+void createTestMsg(std_msgs::msg::ColorRGBA & _msg)
+{
+  _msg.r = 0.2;
+  _msg.g = 0.4;
+  _msg.b = 0.6;
+  _msg.a = 0.8;
+}
+
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(actuator_msgs::msg::Actuators & _msg)
 {
   std_msgs::msg::Header header_msg;
@@ -89,6 +100,7 @@ void compareTestMsg(const std::shared_ptr<actuator_msgs::msg::Actuators> & _msg)
   }
 }
 
+<<<<<<< HEAD
 void createTestMsg(std_msgs::msg::ColorRGBA & _msg)
 {
   _msg.r = 0.2;
@@ -97,6 +109,8 @@ void createTestMsg(std_msgs::msg::ColorRGBA & _msg)
   _msg.a = 0.8;
 }
 
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 void compareTestMsg(const std::shared_ptr<std_msgs::msg::ColorRGBA> & _msg)
 {
   std_msgs::msg::ColorRGBA expected_msg;
@@ -381,6 +395,21 @@ void compareTestMsg(const std::shared_ptr<geometry_msgs::msg::PoseWithCovariance
   }
 }
 
+<<<<<<< HEAD
+=======
+void createTestMsg(geometry_msgs::msg::PoseWithCovarianceStamped & _msg)
+{
+  createTestMsg(_msg.header);
+  createTestMsg(_msg.pose);
+}
+
+void compareTestMsg(const std::shared_ptr<geometry_msgs::msg::PoseWithCovarianceStamped> & _msg)
+{
+  compareTestMsg(std::make_shared<geometry_msgs::msg::PoseWithCovariance>(_msg->pose));
+  compareTestMsg(std::make_shared<std_msgs::msg::Header>(_msg->header));
+}
+
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(geometry_msgs::msg::PoseStamped & _msg)
 {
   createTestMsg(_msg.header);
@@ -610,7 +639,10 @@ void compareTestMsg(const std::shared_ptr<ros_gz_interfaces::msg::Light> & _msg)
   EXPECT_FLOAT_EQ(expected_msg.intensity, _msg->intensity);
 }
 
+<<<<<<< HEAD
 #if HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(ros_gz_interfaces::msg::MaterialColor & _msg)
 {
   createTestMsg(_msg.header);
@@ -638,7 +670,10 @@ void compareTestMsg(const std::shared_ptr<ros_gz_interfaces::msg::MaterialColor>
   EXPECT_EQ(expected_msg.shininess, _msg->shininess);
   EXPECT_EQ(expected_msg.entity_match, _msg->entity_match);
 }
+<<<<<<< HEAD
 #endif  // HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 void createTestMsg(ros_gz_interfaces::msg::GuiCamera & _msg)
 {
@@ -935,7 +970,10 @@ void compareTestMsg(const std::shared_ptr<ros_gz_interfaces::msg::Contacts> & _m
   }
 }
 
+<<<<<<< HEAD
 #if HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(ros_gz_interfaces::msg::Dataframe & _msg)
 {
   createTestMsg(_msg.header);
@@ -961,7 +999,10 @@ void compareTestMsg(const std::shared_ptr<ros_gz_interfaces::msg::Dataframe> & _
     EXPECT_EQ(expected_msg.data[ii], _msg->data[ii]);
   }
 }
+<<<<<<< HEAD
 #endif  // HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 void createTestMsg(nav_msgs::msg::Odometry & _msg)
 {

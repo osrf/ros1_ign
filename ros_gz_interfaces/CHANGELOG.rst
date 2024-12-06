@@ -2,6 +2,7 @@
 Changelog for package ros_gz_interfaces
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 0.244.16 (2024-07-22)
 ---------------------
 
@@ -25,6 +26,41 @@ Changelog for package ros_gz_interfaces
 0.244.14 (2024-04-08)
 ---------------------
 * Add option to change material color from ROS. (`#486 <https://github.com/gazebosim/ros_gz/issues/486>`_)
+=======
+2.1.2 (2024-10-31)
+------------------
+
+2.1.1 (2024-10-14)
+------------------
+
+2.1.0 (2024-09-12)
+------------------
+
+2.0.1 (2024-08-29)
+------------------
+
+2.0.0 (2024-07-22)
+------------------
+
+1.0.1 (2024-07-03)
+------------------
+* Add support for gz.msgs.EntityWrench (base branch: ros2) (`#573 <https://github.com/gazebosim/ros_gz//issues/573>`_)
+* Add option to change material color from ROS. (`#521 <https://github.com/gazebosim/ros_gz//issues/521>`_)
+  Forward port of `#486 <https://github.com/gazebosim/ros_gz//issues/486>`_.
+  * Message and bridge for MaterialColor.
+  This allows bridging MaterialColor from ROS to GZ and is
+  important for allowing simulation users to create status lights.
+  (cherry picked from commit 78dc4823121f085594e6028a93f1e571eb04f58b)
+* Add option to change material color from ROS. (`#521 <https://github.com/gazebosim/ros_gz//issues/521>`_)
+  Forward port of `#486 <https://github.com/gazebosim/ros_gz//issues/486>`_.
+  * Message and bridge for MaterialColor.
+  This allows bridging MaterialColor from ROS to GZ and is
+  important for allowing simulation users to create status lights.
+* Prepare for 1.0.0 Release (`#495 <https://github.com/gazebosim/ros_gz//issues/495>`_)
+* 0.244.14
+* Changelog
+* Add option to change material color from ROS. (`#486 <https://github.com/gazebosim/ros_gz//issues/486>`_)
+>>>>>>> 63b651a (Garden EOL (#662))
   * Message and bridge for MaterialColor.
   This allows bridging MaterialColor from ROS to GZ and is
   important for allowing simulation users to create status lights.
@@ -32,6 +68,7 @@ Changelog for package ros_gz_interfaces
   Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
   Co-authored-by: Addisu Z. Taddese <addisuzt@intrinsic.ai>
   Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+<<<<<<< HEAD
 * Contributors: Benjamin Perseghetti
 
 0.244.13 (2024-01-23)
@@ -45,6 +82,51 @@ Changelog for package ros_gz_interfaces
 
 0.244.11 (2023-05-23)
 ---------------------
+=======
+* 0.244.13
+* Changelog
+* 0.244.12
+* Changelog
+* 0.246.0
+* Update changelogs
+* SensorNoise msg bridging (`#417 <https://github.com/gazebosim/ros_gz//issues/417>`_)
+* Added Altimeter msg bridging (`#413 <https://github.com/gazebosim/ros_gz//issues/413>`_)
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz//issues/386>`_)
+* Merge branch 'humble' into mjcarroll/humble_to_ros2
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz//issues/376>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz//issues/323>`_)
+  Humble ➡️ ROS2
+* Merge branch 'humble' into ports/humble_to_ros2
+* Export rcl_interfaces exec dependency (`#317 <https://github.com/gazebosim/ros_gz//issues/317>`_)
+* 0.245.0
+* Changelog
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz//issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Benjamin Perseghetti, Jose Luis Rivero, Michael Carroll, Victor T. Noppeney, ahcorde
+
+1.0.0 (2024-04-24)
+------------------
+
+0.246.0 (2023-08-31)
+--------------------
+* SensorNoise msg bridging (`#417 <https://github.com/gazebosim/ros_gz/issues/417>`_)
+* Added Altimeter msg bridging (`#413 <https://github.com/gazebosim/ros_gz/issues/413>`_)
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz/issues/386>`_)
+* Merge branch 'humble' into mjcarroll/humble_to_ros2
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz/issues/376>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz/issues/323>`_)
+* Export rcl_interfaces exec dependency (`#317 <https://github.com/gazebosim/ros_gz/issues/317>`_)
+* Contributors: Aditya Pande, Alejandro Hernández Cordero, Michael Carroll, ahcorde
+
+0.245.0 (2022-10-12)
+--------------------
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz/issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Contributors: Alejandro Hernández Cordero, ahcorde
+
+>>>>>>> 63b651a (Garden EOL (#662))
 
 0.244.10 (2023-05-03)
 ---------------------

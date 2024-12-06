@@ -16,9 +16,21 @@ from dataclasses import dataclass
 
 import os
 
+<<<<<<< HEAD
 from ros_gz_bridge.mappings import MAPPINGS, MAPPINGS_10_1_0, MAPPINGS_8_4_0
 
 from rosidl_cmake import expand_template
+=======
+from ros_gz_bridge.mappings import MAPPINGS
+
+from rosidl_pycommon import expand_template
+
+from . import actions
+
+__all__ = [
+    'actions',
+]
+>>>>>>> 63b651a (Garden EOL (#662))
 
 
 @dataclass
@@ -66,6 +78,7 @@ def mappings(gz_msgs_ver):
                 ros2_message_name=mapping.ros_type,
                 gz_message_name=mapping.gz_type
             ))
+<<<<<<< HEAD
 
     if gz_msgs_ver >= (8, 4, 0):
         for (ros2_package_name, mappings) in MAPPINGS_8_4_0.items():
@@ -83,6 +96,8 @@ def mappings(gz_msgs_ver):
                     ros2_message_name=mapping.ros_type,
                     gz_message_name=mapping.gz_type
                 ))
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
     return sorted(data, key=lambda mm: mm.ros2_string())
 
 

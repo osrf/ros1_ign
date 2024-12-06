@@ -39,7 +39,11 @@ get_factory__@(ros2_package_name)(
     return std::make_shared<
       Factory<
         @(m.ros2_type()),
+<<<<<<< HEAD
         @(m.ign_type())
+=======
+        @(m.gz_type())
+>>>>>>> 63b651a (Garden EOL (#662))
       >
     >("@(m.ros2_string())", "@(m.gz_string())");
   }
@@ -52,10 +56,17 @@ template<>
 void
 Factory<
   @(m.ros2_type()),
+<<<<<<< HEAD
   @(m.ign_type())
 >::convert_ros_to_gz(
   const @(m.ros2_type()) & ros_msg,
   @(m.ign_type()) & gz_msg)
+=======
+  @(m.gz_type())
+>::convert_ros_to_gz(
+  const @(m.ros2_type()) & ros_msg,
+  @(m.gz_type()) & gz_msg)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   ros_gz_bridge::convert_ros_to_gz(ros_msg, gz_msg);
 }
@@ -64,9 +75,15 @@ template<>
 void
 Factory<
   @(m.ros2_type()),
+<<<<<<< HEAD
   @(m.ign_type())
 >::convert_gz_to_ros(
   const @(m.ign_type()) & gz_msg,
+=======
+  @(m.gz_type())
+>::convert_gz_to_ros(
+  const @(m.gz_type()) & gz_msg,
+>>>>>>> 63b651a (Garden EOL (#662))
   @(m.ros2_type()) & ros_msg)
 {
   ros_gz_bridge::convert_gz_to_ros(gz_msg, ros_msg);

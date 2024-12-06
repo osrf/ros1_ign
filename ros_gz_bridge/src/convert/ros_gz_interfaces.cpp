@@ -245,7 +245,10 @@ convert_gz_to_ros(
   }
 }
 
+<<<<<<< HEAD
 #if HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 template<>
 void
 convert_ros_to_gz(
@@ -295,7 +298,10 @@ convert_gz_to_ros(
     gz_msg.data().begin() + gz_msg.data().size(),
     ros_msg.data.begin());
 }
+<<<<<<< HEAD
 #endif  // HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 template<>
 void
@@ -402,7 +408,10 @@ convert_gz_to_ros(
   ros_msg.intensity = gz_msg.intensity();
 }
 
+<<<<<<< HEAD
 #if HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 template<>
 void
 convert_ros_to_gz(
@@ -460,7 +469,10 @@ convert_gz_to_ros(
 
   ros_msg.shininess = gz_msg.shininess();
 }
+<<<<<<< HEAD
 #endif  // HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 template<>
 void
@@ -497,9 +509,13 @@ convert_gz_to_ros(
     ros_msg.type = 0;
   } else if (gz_msg.type() == gz::msgs::SensorNoise_Type::SensorNoise_Type_GAUSSIAN) {
     ros_msg.type = 2;
+<<<<<<< HEAD
   } else if (gz_msg.type() ==  // NOLINT
     gz::msgs::SensorNoise_Type::SensorNoise_Type_GAUSSIAN_QUANTIZED)  // NOLINT
   {  // NOLINT
+=======
+  } else if (gz_msg.type() == gz::msgs::SensorNoise_Type::SensorNoise_Type_GAUSSIAN_QUANTIZED) {
+>>>>>>> 63b651a (Garden EOL (#662))
     ros_msg.type = 3;
   }
 

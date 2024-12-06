@@ -2,13 +2,21 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>ros_gz_sim</name>
+<<<<<<< HEAD
   <version>0.244.16</version>
   <description>Tools for using Gazebo Sim simulation with ROS.</description>
   <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+=======
+  <version>2.1.2</version>
+  <description>Tools for using Gazebo Sim simulation with ROS.</description>
+  <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+  <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <license>Apache 2.0</license>
 
   <author>Alejandro Hernandez</author>
+<<<<<<< HEAD
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
@@ -37,6 +45,33 @@
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+=======
+  <author email="addisuzt@intrinsic.ai">Addisu Taddese</author>
+  <author email="caguero@openrobotics.org">Carlos Agüero</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+  <buildtool_depend>pkg-config</buildtool_depend>
+
+  <depend>ament_index_python</depend>
+  <depend>launch</depend>
+  <depend>launch_ros</depend>
+  <depend>libgflags-dev</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
+  <depend>std_msgs</depend>
+
+  <depend>gz_math_vendor</depend>
+  <depend>gz_msgs_vendor</depend>
+  <depend>gz_sim_vendor</depend>
+  <depend>gz_transport_vendor</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend>launch_ros</test_depend>
+  <test_depend>launch_testing</test_depend>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <export>
     <build_type>ament_cmake</build_type>

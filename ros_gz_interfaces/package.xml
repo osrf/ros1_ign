@@ -1,10 +1,20 @@
 <package format="3">
   <name>ros_gz_interfaces</name>
+<<<<<<< HEAD
   <version>0.244.16</version>
   <description>Message and service data structures for interacting with Gazebo from ROS2.</description>
   <license>Apache 2.0</license>
   <maintainer email="louise@openrobotics.org">Louise Poubel</maintainer>
   <author email="zhenpeng.ge@qq.com">Zhenpeng Ge</author>
+=======
+  <version>2.1.2</version>
+  <description>Message and service data structures for interacting with Gazebo from ROS2.</description>
+  <license>Apache 2.0</license>
+  <author>Louise Poubel</author>
+  <author email="zhenpeng.ge@qq.com">Zhenpeng Ge</author>
+  <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
+  <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+>>>>>>> 63b651a (Garden EOL (#662))
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 

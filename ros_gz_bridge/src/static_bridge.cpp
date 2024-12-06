@@ -37,7 +37,11 @@ int main(int argc, char * argv[])
   config.ros_topic_name = "chatter";
   config.gz_topic_name = "chatter";
   config.ros_type_name = "std_msgs/msg/String";
+<<<<<<< HEAD
   config.gz_type_name = "ignition.msgs.StringMsg";
+=======
+  config.gz_type_name = "gz.msgs.StringMsg";
+>>>>>>> 63b651a (Garden EOL (#662))
   config.is_lazy = lazy_subscription;
 
   bridge_node->add_bridge(config);

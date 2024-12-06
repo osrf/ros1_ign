@@ -15,7 +15,11 @@
 #ifndef ROS_GZ_BRIDGE__CONVERT__RCL_INTERFACES_HPP_
 #define ROS_GZ_BRIDGE__CONVERT__RCL_INTERFACES_HPP_
 
+<<<<<<< HEAD
 // Ignition messages
+=======
+// GZ messages
+>>>>>>> 63b651a (Garden EOL (#662))
 #include <gz/msgs/any.pb.h>
 
 // ROS 2 messages

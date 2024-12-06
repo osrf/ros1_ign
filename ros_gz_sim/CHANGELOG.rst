@@ -2,6 +2,7 @@
 Changelog for package ros_gz_sim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 0.244.16 (2024-07-22)
 ---------------------
 
@@ -11,6 +12,93 @@ Changelog for package ros_gz_sim
 0.244.14 (2024-04-08)
 ---------------------
 * Support `<gazebo_ros>` in `package.xml` exports (`#492 <https://github.com/gazebosim/ros_gz/issues/492>`_)
+=======
+2.1.2 (2024-10-31)
+------------------
+* Create ros_gz_spawn_model.launch (`#604 <https://github.com/gazebosim/ros_gz/issues/604>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Add create_own_container argument to ros_gz_spawn_model.launch.py (`#622 <https://github.com/gazebosim/ros_gz/issues/622>`_)
+* Fix ros_gz_sim.launch.py when create_own_container is enabled. (`#620 <https://github.com/gazebosim/ros_gz/issues/620>`_)
+* Contributors: Aarav Gupta, Amronos, Carlos Agüero
+
+2.1.1 (2024-10-14)
+------------------
+* Extra parameter to start a container (`#616 <https://github.com/gazebosim/ros_gz/issues/616>`_)
+* Bugfix: `if "false"` is always `True` (`#617 <https://github.com/gazebosim/ros_gz/issues/617>`_)
+  There is an issue in this launch file when passing the string 'false' as
+  an argument. In Python, non-empty strings are always evaluated as True,
+  regardless of their content. This means that even if you pass 'false',
+  the system will still evaluate it as True.
+  This bug results in the launch system incorrectly calling the OnShutdown
+  method twice. When any ROS launch action invokes a RosAdapter, it
+  triggers the following exception: "Cannot shutdown a ROS adapter that is
+  not running."
+  To temporarily work around this issue, you can launch gz_sim_launch.py
+  with the on_exit_shutdown argument set to an empty string. This prevents
+  the erroneous shutdown sequence and avoids the associated exception.
+* Name gazebo sim node (`#611 <https://github.com/gazebosim/ros_gz/issues/611>`_)
+* Contributors: Carlos Agüero, Ignacio Vizzo, Nabeel Sherazi
+
+2.1.0 (2024-09-12)
+------------------
+* Change world_string to model_string in gz_spawn_model files (`#606 <https://github.com/gazebosim/ros_gz//issues/606>`_)
+  * Change world_string to model_string
+  Also changed description from XML string to XML(SDF) string
+* Use model string in ros_gz_spawn_model.launch.py (`#605 <https://github.com/gazebosim/ros_gz//issues/605>`_)
+* Remove default_value for required arguments (`#602 <https://github.com/gazebosim/ros_gz//issues/602>`_)
+  * Remove default_value for config_file
+* Fix errors with name of bridge not being given (`#600 <https://github.com/gazebosim/ros_gz//issues/600>`_)
+  * Add argument bridge_name to fix errors
+* Restore launch file (`#603 <https://github.com/gazebosim/ros_gz//issues/603>`_)
+* Use optional parameters in actions (`#601 <https://github.com/gazebosim/ros_gz//issues/601>`_)
+* Contributors: Amronos, Carlos Agüero
+
+2.0.1 (2024-08-29)
+------------------
+* Wait for create service to be available. (`#588 <https://github.com/gazebosim/ros_gz/issues/588>`_)
+* Contributors: Sebastian Kasperski
+
+2.0.0 (2024-07-22)
+------------------
+* Making use_composition true by default (`#578 <https://github.com/gazebosim/ros_gz/issues/578>`_)
+* Contributors: Addisu Z. Taddese
+
+1.0.1 (2024-07-03)
+------------------
+* Merge pull request `#571 <https://github.com/gazebosim/ros_gz//issues/571>`_ from azeey/jazzy_to_ros2
+  Merge jazzy ➡️  ros2
+* Merge jazzy into ros2
+* Merge pull request `#569 <https://github.com/gazebosim/ros_gz//issues/569>`_ from azeey/iron_to_jazzy
+  Merge iron ➡️  jazzy
+* Merge remote-tracking branch 'origin/jazzy' into iron_to_jazzy
+* Add a ROS node that runs Gazebo (`#500 <https://github.com/gazebosim/ros_gz//issues/500>`_) (`#567 <https://github.com/gazebosim/ros_gz//issues/567>`_)
+  * Add gzserver with ability to load an SDF file or string
+  ---------
+  (cherry picked from commit 92a2891f4adf35e4a4119aca2447dee93e22a06a)
+  Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+* Merge iron into jazzy
+* Merge pull request `#564 <https://github.com/gazebosim/ros_gz//issues/564>`_ from azeey/humble_to_iron
+  Humble ➡️ Iron
+* Merge humble -> iron
+* Update launch files with name parameter (`#556 <https://github.com/gazebosim/ros_gz//issues/556>`_)
+  * Name is required.
+* Launch gz_spawn_model from xml (`#551 <https://github.com/gazebosim/ros_gz//issues/551>`_)
+  Spawn models from XML.
+  Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+* Launch ros_gz_bridge from xml (`#550 <https://github.com/gazebosim/ros_gz//issues/550>`_)
+  * Add gzserver with ability to load an SDF file or string
+* Launch gzserver and the bridge as composable nodes (`#528 <https://github.com/gazebosim/ros_gz//issues/528>`_)
+  * Add gzserver with ability to load an SDF file or string
+* Add a ROS node that runs Gazebo (`#500 <https://github.com/gazebosim/ros_gz//issues/500>`_)
+  * Add gzserver with ability to load an SDF file or string
+  ---------
+* Prepare for 1.0.0 Release (`#495 <https://github.com/gazebosim/ros_gz//issues/495>`_)
+* Use gz_vendor packages (`#531 <https://github.com/gazebosim/ros_gz//issues/531>`_)
+* 0.244.14
+* Changelog
+* ign to gz (`#519 <https://github.com/gazebosim/ros_gz//issues/519>`_)
+* Support `<gazebo_ros>` in `package.xml` exports (`#492 <https://github.com/gazebosim/ros_gz//issues/492>`_)
+>>>>>>> 63b651a (Garden EOL (#662))
   This copies the implementation from `gazebo_ros_paths.py` to provide a
   way for packages to set resource paths from `package.xml`.
   ```
@@ -22,6 +110,7 @@ Changelog for package ros_gz_sim
   The value of `gazebo_model_path` and `gazebo_media_path` is appended to `GZ_SIM_RESOURCE_PATH`
   The value of `plugin_path` appended to `GZ_SIM_SYSTEM_PLUGIN_PATH`
   ---------
+<<<<<<< HEAD
 * Contributors: Addisu Z. Taddese
 
 0.244.13 (2024-01-23)
@@ -35,6 +124,91 @@ Changelog for package ros_gz_sim
 
 0.244.11 (2023-05-23)
 ---------------------
+=======
+* Undeprecate use of commandline flags (`#491 <https://github.com/gazebosim/ros_gz//issues/491>`_)
+* 0.244.13
+* Changelog
+* Remove deprecations using ros_gz_sim_create (`#476 <https://github.com/gazebosim/ros_gz//issues/476>`_)
+* Added support for using ROS 2 parameters to spawn entities in Gazebo using ros_gz_sim::create (`#475 <https://github.com/gazebosim/ros_gz//issues/475>`_)
+* Fix bug in `create` where command line arguments were truncated (`#472 <https://github.com/gazebosim/ros_gz//issues/472>`_)
+* 0.244.12
+* Changelog
+* Filter ROS arguments before gflags parsing (`#453 <https://github.com/gazebosim/ros_gz//issues/453>`_)
+* 0.246.0
+* Update changelogs
+* Add harmonic CI (`#447 <https://github.com/gazebosim/ros_gz//issues/447>`_)
+  * Add harmonic CI
+  * Include garden options
+  * Add harmonic stanza
+  * Additional message headers
+  ---------
+* Replace deprecated ign_find_package with gz_find_package (`#432 <https://github.com/gazebosim/ros_gz//issues/432>`_)
+  Co-authored-by: jmackay2 <jmackay@gmail.com>
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz//issues/386>`_)
+* Merge branch 'humble' into mjcarroll/humble_to_ros2
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz//issues/376>`_)
+* set on_exit_shutdown argument for gz-sim ExecuteProcess (`#355 <https://github.com/gazebosim/ros_gz//issues/355>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz//issues/323>`_)
+  Humble ➡️ ROS2
+* Merge branch 'humble' into ports/humble_to_ros2
+* 0.245.0
+* Changelog
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz//issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Remove all ignition references on ROS 2 branch (`#302 <https://github.com/gazebosim/ros_gz//issues/302>`_)
+  * Remove all shims
+  * Update CMakeLists and package.xml for garden
+  * Complete garden gz renaming
+  * Drop fortress CI
+* Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Ayush Singh, Carlos Agüero, Jose Luis Rivero, Michael Carroll, ahcorde, andermi, jmackay2, mergify[bot]
+
+1.0.0 (2024-04-24)
+------------------
+* Use gz_vendor packages (`#531 <https://github.com/gazebosim/ros_gz/issues/531>`_)
+* ign to gz (`#519 <https://github.com/gazebosim/ros_gz/issues/519>`_)
+* Undeprecate use of commandline flags (`#491 <https://github.com/gazebosim/ros_gz/issues/491>`_)
+* Remove deprecations using ros_gz_sim_create (`#476 <https://github.com/gazebosim/ros_gz/issues/476>`_)
+* Added support for using ROS 2 parameters to spawn entities in Gazebo using ros_gz_sim::create (`#475 <https://github.com/gazebosim/ros_gz/issues/475>`_)
+* Fix bug in `create` where command line arguments were truncated (`#472 <https://github.com/gazebosim/ros_gz/issues/472>`_)
+* Filter ROS arguments before gflags parsing (`#453 <https://github.com/gazebosim/ros_gz/issues/453>`_)
+* Contributors: Addisu Z. Taddese, Alejandro Hernández Cordero, Ayush Singh, Michael Carroll
+
+0.246.0 (2023-08-31)
+--------------------
+* Add harmonic CI (`#447 <https://github.com/gazebosim/ros_gz/issues/447>`_)
+  * Add harmonic CI
+  * Include garden options
+  * Add harmonic stanza
+  * Additional message headers
+  ---------
+* Replace deprecated ign_find_package with gz_find_package (`#432 <https://github.com/gazebosim/ros_gz/issues/432>`_)
+  Co-authored-by: jmackay2 <jmackay@gmail.com>
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz/issues/386>`_)
+* Merge branch 'humble' into mjcarroll/humble_to_ros2
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz/issues/376>`_)
+* set on_exit_shutdown argument for gz-sim ExecuteProcess (`#355 <https://github.com/gazebosim/ros_gz/issues/355>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz/issues/323>`_)
+* Remove all ignition references on ROS 2 branch (`#302 <https://github.com/gazebosim/ros_gz/issues/302>`_)
+  * Remove all shims
+  * Update CMakeLists and package.xml for garden
+  * Complete garden gz renaming
+  * Drop fortress CI
+* Contributors: Aditya Pande, Alejandro Hernández Cordero, Michael Carroll, ahcorde, andermi, jmackay2
+
+0.245.0 (2022-10-12)
+--------------------
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz/issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Remove all ignition references on ROS 2 branch (`#302 <https://github.com/gazebosim/ros_gz/issues/302>`_)
+  * Remove all shims
+  * Update CMakeLists and package.xml for garden
+  * Complete garden gz renaming
+  * Drop fortress CI
+* Contributors: Alejandro Hernández Cordero, Michael Carroll, ahcorde
+
+>>>>>>> 63b651a (Garden EOL (#662))
 
 0.244.10 (2023-05-03)
 ---------------------

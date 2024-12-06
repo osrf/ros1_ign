@@ -30,6 +30,11 @@ BridgeHandle::BridgeHandle(
   config_(config),
   factory_(get_factory(config.ros_type_name, config.gz_type_name))
 {
+<<<<<<< HEAD
+=======
+  ros_node_->get_parameter("override_timestamps_with_wall_time",
+    override_timestamps_with_wall_time_);
+>>>>>>> 63b651a (Garden EOL (#662))
 }
 
 BridgeHandle::~BridgeHandle() = default;

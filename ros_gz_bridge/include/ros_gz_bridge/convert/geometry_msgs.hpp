@@ -30,6 +30,10 @@
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/pose_array.hpp>
 #include <geometry_msgs/msg/pose_with_covariance.hpp>
+<<<<<<< HEAD
+=======
+#include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
+>>>>>>> 63b651a (Garden EOL (#662))
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/quaternion.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
@@ -116,6 +120,21 @@ template<>
 void
 convert_gz_to_ros(
   const gz::msgs::PoseWithCovariance & gz_msg,
+<<<<<<< HEAD
+=======
+  geometry_msgs::msg::PoseWithCovarianceStamped & ros_msg);
+
+template<>
+void
+convert_ros_to_gz(
+  const geometry_msgs::msg::PoseWithCovarianceStamped & ros_msg,
+  gz::msgs::PoseWithCovariance & gz_msg);
+
+template<>
+void
+convert_gz_to_ros(
+  const gz::msgs::PoseWithCovariance & gz_msg,
+>>>>>>> 63b651a (Garden EOL (#662))
   geometry_msgs::msg::PoseWithCovariance & ros_msg);
 
 template<>

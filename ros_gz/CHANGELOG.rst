@@ -2,6 +2,7 @@
 Changelog for package ros_gz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 0.244.16 (2024-07-22)
 ---------------------
 
@@ -19,6 +20,63 @@ Changelog for package ros_gz
 
 0.244.11 (2023-05-23)
 ---------------------
+=======
+2.1.2 (2024-10-31)
+------------------
+
+2.1.1 (2024-10-14)
+------------------
+
+2.1.0 (2024-09-12)
+------------------
+
+2.0.1 (2024-08-29)
+------------------
+
+2.0.0 (2024-07-22)
+------------------
+
+1.0.1 (2024-07-03)
+------------------
+* Prepare for 1.0.0 Release (`#495 <https://github.com/gazebosim/ros_gz//issues/495>`_)
+* 0.244.14
+* Changelog
+* 0.244.13
+* Changelog
+* 0.244.12
+* Changelog
+* 0.246.0
+* Update changelogs
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz//issues/386>`_)
+* Merge branch 'humble' into mjcarroll/humble_to_ros2
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz//issues/376>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz//issues/323>`_)
+  Humble ➡️ ROS2
+* Merge branch 'humble' into ports/humble_to_ros2
+* 0.245.0
+* Changelog
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz//issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Jose Luis Rivero, Michael Carroll, ahcorde
+
+1.0.0 (2024-04-24)
+------------------
+
+0.246.0 (2023-08-31)
+--------------------
+* Port: humble to ros2 (`#386 <https://github.com/gazebosim/ros_gz/issues/386>`_)
+* Update maintainers (`#376 <https://github.com/gazebosim/ros_gz/issues/376>`_)
+* Humble ➡️ ROS2 (`#323 <https://github.com/gazebosim/ros_gz/issues/323>`_)
+* Contributors: Aditya Pande, Alejandro Hernández Cordero, Michael Carroll, ahcorde
+
+0.245.0 (2022-10-12)
+--------------------
+* humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz/issues/311>`_)
+  Co-authored-by: Michael Carroll <michael@openrobotics.org>
+* Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+* Contributors: Alejandro Hernández Cordero, ahcorde
+>>>>>>> 63b651a (Garden EOL (#662))
 
 0.244.10 (2023-05-03)
 ---------------------

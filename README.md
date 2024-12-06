@@ -3,6 +3,7 @@
 ROS 2 version | Gazebo version | Branch | Binaries hosted at
 -- | -- | -- | --
 Foxy | Citadel | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | https://packages.ros.org
+<<<<<<< HEAD
 Foxy | Edifice | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | only from source
 Galactic | Edifice | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | https://packages.ros.org
 Galactic | Fortress | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | only from source
@@ -19,6 +20,27 @@ Rolling | Harmonic | [ros2](https://github.com/gazebosim/ros_gz/tree/ros2) | onl
 For information on ROS 2 and Gazebo compatibility, refer to the [melodic branch README](https://github.com/gazebosim/ros_gz/tree/melodic)
 
 > Please [ticket an issue](https://github.com/gazebosim/ros_gz/issues/) if you'd like support to be added for some combination.
+=======
+Foxy | Edifice | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | only from source [^2]
+Galactic | Edifice | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | https://packages.ros.org [^2]
+Galactic | Fortress | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | only from source
+Humble | Fortress | [humble](https://github.com/gazebosim/ros_gz/tree/humble) | https://packages.ros.org
+Humble | Garden | [humble](https://github.com/gazebosim/ros_gz/tree/humble) | [gazebo packages](https://gazebosim.org/docs/latest/ros_installation#gazebo-garden-with-ros-2-humble-iron-or-rolling-use-with-caution-)[^1] [^2]
+Humble | Harmonic | [humble](https://github.com/gazebosim/ros_gz/tree/humble) | [gazebo packages](https://gazebosim.org/docs/harmonic/ros_installation#-gazebo-harmonic-with-ros-2-humble-iron-or-rolling-use-with-caution-)[^1]
+Iron | Fortress | [humble](https://github.com/gazebosim/ros_gz/tree/iron) | https://packages.ros.org
+Iron | Garden | [humble](https://github.com/gazebosim/ros_gz/tree/iron) | only from source [^2]
+Iron | Harmonic | [humble](https://github.com/gazebosim/ros_gz/tree/iron) | only from source
+Jazzy | Garden | [ros2](https://github.com/gazebosim/ros_gz/tree/ros2) | only from source [^2]
+Jazzy | Harmonic | [jazzy](https://github.com/gazebosim/ros_gz/tree/jazzy) | https://packages.ros.org
+Rolling | Fortress | [humble](https://github.com/gazebosim/ros_gz/tree/humble) | https://packages.ros.org
+Rolling | Garden | [ros2](https://github.com/gazebosim/ros_gz/tree/ros2) | only from source [^2]
+Rolling | Harmonic | [ros2](https://github.com/gazebosim/ros_gz/tree/ros2) | only from source
+
+[^1]: Binaries for these pairings are provided from the packages.osrfoundation.org repository. Refer to https://gazebosim.org/docs/latest/ros_installation for installation instructions.
+[^2]: Note that the Gazebo version on this row has reached end-of-life.
+
+For information on ROS(1) and Gazebo compatibility, refer to the [noetic branch README](https://github.com/gazebosim/ros_gz/tree/noetic)
+>>>>>>> 63b651a (Garden EOL (#662))
 
 [Details about the renaming process](README_RENAME.md) from `ign` to `gz` .
 
@@ -55,11 +77,19 @@ This repository holds packages that provide integration between
 
 ## Install
 
+<<<<<<< HEAD
 This branch supports ROS Humble. See above for other ROS versions.
 
 ### Binaries
 
 Humble binaries are available for Fortress.
+=======
+This branch supports ROS Rolling. See above for other ROS versions.
+
+### Binaries
+
+Rolling binaries are available for Fortress.
+>>>>>>> 63b651a (Garden EOL (#662))
 They are hosted at https://packages.ros.org.
 
 1. Add https://packages.ros.org
@@ -70,30 +100,50 @@ They are hosted at https://packages.ros.org.
 
 1. Install `ros_gz`
 
+<<<<<<< HEAD
         sudo apt install ros-humble-ros-gz
+=======
+        sudo apt install ros-rolling-ros-gz
+>>>>>>> 63b651a (Garden EOL (#662))
 
 ### From source
 
 #### ROS
 
 Be sure you've installed
+<<<<<<< HEAD
 [ROS Humble](https://docs.ros.org/en/humble/Installation.html)
+=======
+[ROS Rolling](https://docs.ros.org/en/rolling/index.html)
+>>>>>>> 63b651a (Garden EOL (#662))
 (at least ROS-Base). More ROS dependencies will be installed below.
 
 #### Gazebo
 
+<<<<<<< HEAD
 Install either [Edifice, Fortress, or Garden](https://gazebosim.org/docs).
+=======
+Install either [Fortress, Harmonic or Ionic](https://gazebosim.org/docs).
+>>>>>>> 63b651a (Garden EOL (#662))
 
 Set the `GZ_VERSION` environment variable to the Gazebo version you'd
 like to compile against. For example:
 
+<<<<<<< HEAD
     export GZ_VERSION=edifice # IMPORTANT: Replace with correct version
+=======
+    export GZ_VERSION=harmonic # IMPORTANT: Replace with correct version
+>>>>>>> 63b651a (Garden EOL (#662))
 
 > You only need to set this variable when compiling, not when running.
 
 #### Compile ros_gz
 
+<<<<<<< HEAD
 The following steps are for Linux and OSX.
+=======
+The following steps are for Linux and macOS.
+>>>>>>> 63b651a (Garden EOL (#662))
 
 1. Create a colcon workspace:
 
@@ -103,14 +153,22 @@ The following steps are for Linux and OSX.
     cd ~/ws/src
 
     # Download needed software
+<<<<<<< HEAD
     git clone https://github.com/gazebosim/ros_gz.git -b humble
+=======
+    git clone https://github.com/gazebosim/ros_gz.git -b ros2
+>>>>>>> 63b651a (Garden EOL (#662))
     ```
 
 1. Install dependencies (this may also install Gazebo):
 
     ```
     cd ~/ws
+<<<<<<< HEAD
     rosdep install -r --from-paths src -i -y --rosdistro humble
+=======
+    rosdep install -r --from-paths src -i -y --rosdistro rolling
+>>>>>>> 63b651a (Garden EOL (#662))
     ```
 
     > If `rosdep` fails to install Gazebo libraries and you have not installed them before, please follow [Gazebo installation instructions](https://gazebosim.org/docs/latest/install).
@@ -130,6 +188,7 @@ The following steps are for Linux and OSX.
   > try building with `colcon build --parallel-workers=1 --executor sequential`. You might also have to set `export MAKEFLAGS="-j 1"` before running `colcon build` to limit
   > the number of processors used to build a single package.
 
+<<<<<<< HEAD
     If `colcon build` fails with [this issue](https://github.com/gazebosim/ros_gz/issues/401)
 
     ```
@@ -146,6 +205,8 @@ The following steps are for Linux and OSX.
     colcon build
     ```
 
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 ## ROSCon 2022
 
 [![](img/video_img.png)](https://vimeo.com/showcase/9954564/video/767127300)

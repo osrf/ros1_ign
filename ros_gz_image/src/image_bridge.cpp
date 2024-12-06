@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+<<<<<<< HEAD
+=======
+#include <rmw/qos_profiles.h>
+>>>>>>> 63b651a (Garden EOL (#662))
 
 #include <iostream>
 #include <memory>
@@ -19,17 +23,27 @@
 #include <vector>
 
 #include <gz/transport/Node.hh>
+<<<<<<< HEAD
 #include <rclcpp/rclcpp.hpp>
 #include <image_transport/image_transport.hpp>
 #include <ros_gz_bridge/convert.hpp>
 
 //////////////////////////////////////////////////
 /// \brief Bridges one topic
+=======
+#include <image_transport/image_transport.hpp>
+#include <rclcpp/rclcpp.hpp>
+#include <ros_gz_bridge/convert.hpp>
+
+//////////////////////////////////////////////////
+/// \brief Bridges one image topic
+>>>>>>> 63b651a (Garden EOL (#662))
 class Handler
 {
 public:
   /// \brief Constructor
   /// \param[in] _topic Image base topic
+<<<<<<< HEAD
   /// \param[in] _it_node Pointer to image transport node
   /// \param[in] _gz_node Pointer to Gazebo node
   Handler(
@@ -38,6 +52,33 @@ public:
     std::shared_ptr<gz::transport::Node> _gz_node)
   {
     this->ros_pub = _it_node->advertise(_topic, 1);
+=======
+  /// \param[in] _node Pointer to ROS node
+  /// \param[in] _gz_node Pointer to Gazebo node
+  Handler(
+    const std::string & _topic,
+    std::shared_ptr<rclcpp::Node> _node,
+    std::shared_ptr<gz::transport::Node> _gz_node)
+  {
+    // Get QoS profile from parameter
+    rmw_qos_profile_t qos_profile = rmw_qos_profile_default;
+    const auto qos_str =
+      _node->get_parameter("qos").get_parameter_value().get<std::string>();
+    if (qos_str == "system_default") {
+      qos_profile = rmw_qos_profile_system_default;
+    } else if (qos_str == "sensor_data") {
+      qos_profile = rmw_qos_profile_sensor_data;
+    } else if (qos_str != "default") {
+      RCLCPP_ERROR(
+        _node->get_logger(),
+        "Invalid QoS profile %s specified. Using default profile.",
+        qos_str.c_str());
+    }
+
+    // Create publishers and subscribers
+    this->ros_pub = image_transport::create_publisher(
+      _node.get(), _topic, qos_profile);
+>>>>>>> 63b651a (Garden EOL (#662))
 
     _gz_node->Subscribe(_topic, &Handler::OnImage, this);
   }
@@ -77,7 +118,11 @@ int main(int argc, char * argv[])
 
   // ROS node
   auto node_ = rclcpp::Node::make_shared("ros_gz_image");
+<<<<<<< HEAD
   auto it_node = std::make_shared<image_transport::ImageTransport>(node_);
+=======
+  node_->declare_parameter("qos", "default");
+>>>>>>> 63b651a (Garden EOL (#662))
 
   // Gazebo node
   auto gz_node = std::make_shared<gz::transport::Node>();
@@ -91,7 +136,11 @@ int main(int argc, char * argv[])
 
   // Create publishers and subscribers
   for (auto topic : args) {
+<<<<<<< HEAD
     handlers.push_back(std::make_shared<Handler>(topic, it_node, gz_node));
+=======
+    handlers.push_back(std::make_shared<Handler>(topic, node_, gz_node));
+>>>>>>> 63b651a (Garden EOL (#662))
   }
 
   // Spin ROS and Gz until shutdown

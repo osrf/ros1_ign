@@ -376,6 +376,10 @@ void createTestMsg(gz::msgs::PoseWithCovariance & _msg)
 {
   createTestMsg(*_msg.mutable_pose()->mutable_position());
   createTestMsg(*_msg.mutable_pose()->mutable_orientation());
+<<<<<<< HEAD
+=======
+  createTestMsg(*_msg.mutable_pose()->mutable_header());
+>>>>>>> 63b651a (Garden EOL (#662))
   for (int i = 0; i < 36; i++) {
     _msg.mutable_covariance()->add_data(i);
   }
@@ -640,7 +644,10 @@ void compareTestMsg(const std::shared_ptr<gz::msgs::Contacts> & _msg)
   }
 }
 
+<<<<<<< HEAD
 #if HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(gz::msgs::Dataframe & _msg)
 {
   gz::msgs::Header header_msg;
@@ -678,7 +685,10 @@ void compareTestMsg(const std::shared_ptr<gz::msgs::Dataframe> & _msg)
   EXPECT_EQ(expected_msg.dst_address(), _msg->dst_address());
   EXPECT_EQ(expected_msg.data(), _msg->data());
 }
+<<<<<<< HEAD
 #endif  // HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 void createTestMsg(gz::msgs::Image & _msg)
 {
@@ -1371,7 +1381,10 @@ void compareTestMsg(const std::shared_ptr<gz::msgs::Light> & _msg)
   EXPECT_FLOAT_EQ(expected_msg.intensity(), _msg->intensity());
 }
 
+<<<<<<< HEAD
 #if HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 void createTestMsg(gz::msgs::MaterialColor & _msg)
 {
   createTestMsg(*_msg.mutable_header());
@@ -1400,7 +1413,10 @@ void compareTestMsg(const std::shared_ptr<gz::msgs::MaterialColor> & _msg)
   EXPECT_EQ(expected_msg.shininess(), _msg->shininess());
   EXPECT_EQ(expected_msg.entity_match(), _msg->entity_match());
 }
+<<<<<<< HEAD
 #endif  // HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 void createTestMsg(gz::msgs::GUICamera & _msg)
 {

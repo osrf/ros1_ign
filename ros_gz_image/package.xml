@@ -1,9 +1,19 @@
 <package format="3">
   <name>ros_gz_image</name>
+<<<<<<< HEAD
   <version>0.244.16</version>
   <description>Image utilities for Gazebo simulation with ROS.</description>
   <license>Apache 2.0</license>
   <maintainer email="louise@openrobotics.org">Louise Poubel</maintainer>
+=======
+  <version>2.1.2</version>
+  <description>Image utilities for Gazebo simulation with ROS.</description>
+  <license>Apache 2.0</license>
+  <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
+  <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+
+  <author>Louise Poubel</author>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
@@ -13,6 +23,7 @@
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
 
+<<<<<<< HEAD
   <!-- Harmonic -->
   <depend condition="$GZ_VERSION == harmonic">gz-msgs10</depend>
   <depend condition="$GZ_VERSION == harmonic">gz-transport13</depend>
@@ -27,6 +38,10 @@
   <!-- Edifice -->
   <depend condition="$GZ_VERSION == edifice or $IGNITION_VERSION == edifice">ignition-msgs7</depend>
   <depend condition="$GZ_VERSION == edifice or $IGNITION_VERSION == edifice">ignition-transport10</depend>
+=======
+  <depend>gz_msgs_vendor</depend>
+  <depend>gz_transport_vendor</depend>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

@@ -37,11 +37,19 @@ def main(argv=sys.argv[1:]):
     msgs_ver = tuple(map(int, args.gz_msgs_ver.split('.')))
 
     rows = []
+<<<<<<< HEAD
     rows.append(f'| {"ROS type":32}| {"Gazebo Transport Type":32}|')
     rows.append(f'|{"-":-<33}|:{"-":-<31}:|')
 
     for mapping in mappings(msgs_ver):
         rows.append('| {:32}| {:32}|'.format(
+=======
+    rows.append(f'| {"ROS type":35}| {"Gazebo Transport Type":35}|')
+    rows.append(f'|{"-":-<36}|:{"-":-<34}:|')
+
+    for mapping in mappings(msgs_ver):
+        rows.append('| {:35}| {:35}|'.format(
+>>>>>>> 63b651a (Garden EOL (#662))
             mapping.ros2_package_name + '/msg/' + mapping.ros2_message_name,
             mapping.gz_string()))
     print('\n'.join(rows))

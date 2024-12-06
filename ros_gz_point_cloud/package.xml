@@ -3,7 +3,14 @@
   <version>0.7.0</version>
   <description>Point cloud utilities for Gazebo simulation with ROS.</description>
   <license>Apache 2.0</license>
+<<<<<<< HEAD
   <maintainer email="louise@openrobotics.org">Louise Poubel</maintainer>
+=======
+  <maintainer email="adityapande@intrinsic.ai">Aditya Pande</maintainer>
+  <maintainer email="ahcorde@openrobotics.org">Alejandro Hernandez</maintainer>
+
+  <author>Louise Poubel</author>
+>>>>>>> 63b651a (Garden EOL (#662))
 
   <buildtool_depend>catkin</buildtool_depend>
 

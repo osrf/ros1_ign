@@ -27,7 +27,11 @@ def generate_launch_description():
         # Launch gazebo
         ExecuteProcess(
             cmd=[
+<<<<<<< HEAD
                 'ign', 'gazebo', '-r',
+=======
+                'gz', 'sim', '-r',
+>>>>>>> 63b651a (Garden EOL (#662))
                 os.path.join(
                     pkg_ros_gz_sim_demos,
                     'models',

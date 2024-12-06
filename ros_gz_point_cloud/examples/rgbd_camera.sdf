@@ -16,7 +16,11 @@
 
   3. Load the example world, unpaused:
 
+<<<<<<< HEAD
           ign gazebo -r examples/rgbd_camera.sdf
+=======
+          gz sim -r examples/rgbd_camera.sdf
+>>>>>>> 63b651a (Garden EOL (#662))
 
   4. Launch RViz to visualize the point cloud:
 

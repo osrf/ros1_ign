@@ -16,7 +16,11 @@
 #define ROS_GZ_BRIDGE__CONVERT__ROSGRAPH_MSGS_HPP_
 
 // Gazebo Msgs
+<<<<<<< HEAD
 #include <gz/msgs.hh>
+=======
+#include <gz/msgs/clock.pb.h>
+>>>>>>> 63b651a (Garden EOL (#662))
 
 // ROS 2 messages
 #include <rosgraph_msgs/msg/clock.hpp>

@@ -22,9 +22,17 @@
 #include <gz/msgs/joint_wrench.pb.h>
 #include <gz/msgs/contact.pb.h>
 #include <gz/msgs/contacts.pb.h>
+<<<<<<< HEAD
 #include <gz/msgs/float_v.pb.h>
 #include <gz/msgs/gui_camera.pb.h>
 #include <gz/msgs/light.pb.h>
+=======
+#include <gz/msgs/dataframe.pb.h>
+#include <gz/msgs/float_v.pb.h>
+#include <gz/msgs/gui_camera.pb.h>
+#include <gz/msgs/light.pb.h>
+#include <gz/msgs/material_color.pb.h>
+>>>>>>> 63b651a (Garden EOL (#662))
 #include <gz/msgs/param.pb.h>
 #include <gz/msgs/param_v.pb.h>
 #include <gz/msgs/sensor_noise.pb.h>
@@ -40,9 +48,17 @@
 #include <ros_gz_interfaces/msg/joint_wrench.hpp>
 #include <ros_gz_interfaces/msg/contact.hpp>
 #include <ros_gz_interfaces/msg/contacts.hpp>
+<<<<<<< HEAD
 #include <ros_gz_interfaces/msg/float32_array.hpp>
 #include <ros_gz_interfaces/msg/gui_camera.hpp>
 #include <ros_gz_interfaces/msg/light.hpp>
+=======
+#include <ros_gz_interfaces/msg/dataframe.hpp>
+#include <ros_gz_interfaces/msg/float32_array.hpp>
+#include <ros_gz_interfaces/msg/gui_camera.hpp>
+#include <ros_gz_interfaces/msg/light.hpp>
+#include <ros_gz_interfaces/msg/material_color.hpp>
+>>>>>>> 63b651a (Garden EOL (#662))
 #include <ros_gz_interfaces/msg/param_vec.hpp>
 #include <ros_gz_interfaces/msg/sensor_noise.hpp>
 #include <ros_gz_interfaces/msg/string_vec.hpp>
@@ -50,6 +66,7 @@
 #include <ros_gz_interfaces/msg/video_record.hpp>
 #include <ros_gz_interfaces/msg/world_control.hpp>
 
+<<<<<<< HEAD
 // Required for HAVE_DATAFRAME definition
 #include <ros_gz_bridge/ros_gz_bridge.hpp>
 
@@ -63,6 +80,10 @@
 #include <ros_gz_interfaces/msg/material_color.hpp>
 #endif  // HAVE_MATERIALCOLOR
 
+=======
+#include <ros_gz_bridge/ros_gz_bridge.hpp>
+
+>>>>>>> 63b651a (Garden EOL (#662))
 #include <ros_gz_bridge/convert_decl.hpp>
 
 namespace ros_gz_bridge
@@ -140,7 +161,10 @@ convert_gz_to_ros(
   const gz::msgs::Contacts & gz_msg,
   ros_gz_interfaces::msg::Contacts & ros_msg);
 
+<<<<<<< HEAD
 #if HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 template<>
 void
 convert_ros_to_gz(
@@ -152,7 +176,10 @@ void
 convert_gz_to_ros(
   const gz::msgs::Dataframe & ign_msg,
   ros_gz_interfaces::msg::Dataframe & ros_msg);
+<<<<<<< HEAD
 #endif  // HAVE_DATAFRAME
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 template<>
 void
@@ -178,7 +205,10 @@ convert_gz_to_ros(
   const gz::msgs::Light & gz_msg,
   ros_gz_interfaces::msg::Light & ros_msg);
 
+<<<<<<< HEAD
 #if HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 template<>
 void
 convert_ros_to_gz(
@@ -190,7 +220,10 @@ void
 convert_gz_to_ros(
   const gz::msgs::MaterialColor & gz_msg,
   ros_gz_interfaces::msg::MaterialColor & ros_msg);
+<<<<<<< HEAD
 #endif  // HAVE_MATERIALCOLOR
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 
 template<>
 void

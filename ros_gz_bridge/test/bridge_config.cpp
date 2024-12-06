@@ -16,7 +16,63 @@
 
 #include <ros_gz_bridge/bridge_config.hpp>
 
+<<<<<<< HEAD
 TEST(BridgeConfig, Minimum)
+=======
+#include "rcutils/logging.h"
+
+size_t g_log_calls = 0;
+
+struct LogEvent
+{
+  const rcutils_log_location_t * location;
+  int level;
+  std::string name;
+  rcutils_time_point_value_t timestamp;
+  std::string message;
+};
+LogEvent g_last_log_event;
+
+class BridgeConfig : public ::testing::Test
+{
+public:
+  rcutils_logging_output_handler_t previous_output_handler;
+  void SetUp()
+  {
+    g_log_calls = 0;
+    ASSERT_EQ(RCUTILS_RET_OK, rcutils_logging_initialize());
+    rcutils_logging_set_default_logger_level(RCUTILS_LOG_SEVERITY_DEBUG);
+
+    auto rcutils_logging_console_output_handler = [](
+      const rcutils_log_location_t * location,
+      int level, const char * name, rcutils_time_point_value_t timestamp,
+      const char * format, va_list * args) -> void
+      {
+        g_log_calls += 1;
+        g_last_log_event.location = location;
+        g_last_log_event.level = level;
+        g_last_log_event.name = name ? name : "";
+        g_last_log_event.timestamp = timestamp;
+        char buffer[1024];
+        vsnprintf(buffer, sizeof(buffer), format, *args);
+        g_last_log_event.message = buffer;
+      };
+
+    this->previous_output_handler = rcutils_logging_get_output_handler();
+    rcutils_logging_set_output_handler(rcutils_logging_console_output_handler);
+  }
+
+  void TearDown()
+  {
+    rcutils_logging_set_output_handler(this->previous_output_handler);
+    ASSERT_EQ(RCUTILS_RET_OK, rcutils_logging_shutdown());
+    EXPECT_FALSE(g_rcutils_logging_initialized);
+  }
+};
+
+
+TEST_F(BridgeConfig, Minimum)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   auto results = ros_gz_bridge::readFromYamlFile("test/config/minimum.yaml");
   EXPECT_EQ(4u, results.size());
@@ -63,6 +119,7 @@ TEST(BridgeConfig, Minimum)
   }
 }
 
+<<<<<<< HEAD
 TEST(BridgeConfig, MinimumIgn)
 {
   auto results = ros_gz_bridge::readFromYamlFile("test/config/minimum_ign.yaml");
@@ -112,6 +169,9 @@ TEST(BridgeConfig, MinimumIgn)
 
 
 TEST(BridgeConfig, FullGz)
+=======
+TEST_F(BridgeConfig, FullGz)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   auto results = ros_gz_bridge::readFromYamlFile("test/config/full.yaml");
   EXPECT_EQ(2u, results.size());
@@ -141,6 +201,7 @@ TEST(BridgeConfig, FullGz)
   }
 }
 
+<<<<<<< HEAD
 TEST(BridgeConfig, FullIgn)
 {
   auto results = ros_gz_bridge::readFromYamlFile("test/config/full.yaml");
@@ -172,6 +233,9 @@ TEST(BridgeConfig, FullIgn)
 }
 
 TEST(BridgeConfig, InvalidSetTwoRos)
+=======
+TEST_F(BridgeConfig, InvalidSetTwoRos)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   // Cannot set topic_name and ros_topic_name
   auto yaml = R"(
@@ -180,9 +244,18 @@ TEST(BridgeConfig, InvalidSetTwoRos)
 
   auto results = ros_gz_bridge::readFromYamlString(yaml);
   EXPECT_EQ(0u, results.size());
+<<<<<<< HEAD
 }
 
 TEST(BridgeConfig, InvalidSetTwoGz)
+=======
+  EXPECT_EQ(
+    "Could not parse entry: topic_name and ros_topic_name are mutually exclusive",
+    g_last_log_event.message);
+}
+
+TEST_F(BridgeConfig, InvalidSetTwoGz)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   // Cannot set topic_name and gz_topic_name
   auto yaml = R"(
@@ -191,9 +264,18 @@ TEST(BridgeConfig, InvalidSetTwoGz)
 
   auto results = ros_gz_bridge::readFromYamlString(yaml);
   EXPECT_EQ(0u, results.size());
+<<<<<<< HEAD
 }
 
 TEST(BridgeConfig, InvalidSetTypes)
+=======
+  EXPECT_EQ(
+    "Could not parse entry: topic_name and gz_topic_name are mutually exclusive",
+    g_last_log_event.message);
+}
+
+TEST_F(BridgeConfig, InvalidSetTypes)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   // Both ros_type_name and gz_type_name must be set
   auto yaml = R"(
@@ -202,9 +284,18 @@ TEST(BridgeConfig, InvalidSetTypes)
 
   auto results = ros_gz_bridge::readFromYamlString(yaml);
   EXPECT_EQ(0u, results.size());
+<<<<<<< HEAD
 }
 
 TEST(BridgeConfig, ParseDirection)
+=======
+  EXPECT_EQ(
+    "Could not parse entry: both ros_type_name and gz_type_name must be set",
+    g_last_log_event.message);
+}
+
+TEST_F(BridgeConfig, ParseDirection)
+>>>>>>> 63b651a (Garden EOL (#662))
 {
   {
     // Check that default is bidirectional
@@ -264,10 +355,47 @@ TEST(BridgeConfig, ParseDirection)
   - topic_name: foo
     ros_type_name: std_msgs/msg/String
     gz_type_name: ignition.msgs.StringMsg
+<<<<<<< HEAD
     direction: asdfasdfasdfasdf
+=======
+    direction: foobar
+>>>>>>> 63b651a (Garden EOL (#662))
     )";
 
     auto results = ros_gz_bridge::readFromYamlString(yaml);
     EXPECT_EQ(0u, results.size());
+<<<<<<< HEAD
   }
 }
+=======
+    EXPECT_EQ("Could not parse entry: invalid direction [foobar]", g_last_log_event.message);
+  }
+}
+
+TEST_F(BridgeConfig, InvalidFileDoesntExist)
+{
+  auto results = ros_gz_bridge::readFromYamlFile("this/should/never/be/a/file.yaml");
+  EXPECT_EQ(0u, results.size());
+  EXPECT_EQ(
+    "Could not parse config: failed to open file [this/should/never/be/a/file.yaml]",
+    g_last_log_event.message);
+}
+
+TEST_F(BridgeConfig, InvalidTopLevel)
+{
+  auto results = ros_gz_bridge::readFromYamlFile("test/config/invalid.yaml");
+  EXPECT_EQ(0u, results.size());
+  EXPECT_EQ(
+    "Could not parse config: top level must be a YAML sequence",
+    g_last_log_event.message);
+}
+
+TEST_F(BridgeConfig, EmptyYAML)
+{
+  auto results = ros_gz_bridge::readFromYamlFile("test/config/empty.yaml");
+  EXPECT_EQ(0u, results.size());
+  EXPECT_EQ(
+    "Could not parse config: file empty [test/config/empty.yaml]",
+    g_last_log_event.message);
+}
+>>>>>>> 63b651a (Garden EOL (#662))

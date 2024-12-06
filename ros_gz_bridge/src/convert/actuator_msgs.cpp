@@ -17,7 +17,10 @@
 
 namespace ros_gz_bridge
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 63b651a (Garden EOL (#662))
 template<>
 void
 convert_ros_to_gz(
