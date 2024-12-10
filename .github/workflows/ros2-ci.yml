@@ -12,7 +12,11 @@ jobs:
         include:
           - docker-image: "ubuntu:24.04"
             gz-version: "harmonic"
+<<<<<<< HEAD
             ros-distro: "jazzy"
+=======
+            ros-distro: "rolling"
+>>>>>>> ff96f97 (Fix linter errors)
     container:
       image: ${{ matrix.docker-image }}
     steps:

@@ -1,6 +1,10 @@
 <package format="3">
   <name>ros_gz_interfaces</name>
+<<<<<<< HEAD
   <version>1.0.7</version>
+=======
+  <version>2.1.2</version>
+>>>>>>> ff96f97 (Fix linter errors)
   <description>Message and service data structures for interacting with Gazebo from ROS2.</description>
   <license>Apache 2.0</license>
   <author>Louise Poubel</author>

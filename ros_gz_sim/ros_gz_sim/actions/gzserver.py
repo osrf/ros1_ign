@@ -114,6 +114,7 @@ class GzServer(Action):
         self.__world_sdf_string = world_sdf_string
         self.__container_name = container_name
 
+<<<<<<< HEAD
 
         # This is here to allow using strings or booleans as values for boolean variables when the Action is used from Python
         # See the RosGzBridge.__init__ function for more details.
@@ -124,13 +125,34 @@ class GzServer(Action):
 
         if isinstance(use_composition, str):
             self.__use_composition = normalize_typed_substitution(TextSubstitution(text=use_composition), bool)
+=======
+        # This is here to allow using strings or booleans as values for boolean variables when
+        # the Action is used from Python See the RosGzBridge.__init__ function for more details.
+        if isinstance(create_own_container, str):
+            self.__create_own_container = normalize_typed_substitution(
+                TextSubstitution(text=create_own_container), bool
+            )
+        else:
+            self.__create_own_container = normalize_typed_substitution(
+                create_own_container, bool
+            )
+
+        if isinstance(use_composition, str):
+            self.__use_composition = normalize_typed_substitution(
+                TextSubstitution(text=use_composition), bool
+            )
+>>>>>>> ff96f97 (Fix linter errors)
         else:
             self.__use_composition = normalize_typed_substitution(use_composition, bool)
 
     @classmethod
     def parse(cls, entity: Entity, parser: Parser):
         """Parse gz_server."""
+<<<<<<< HEAD
         kwargs:Dict = super().parse(entity, parser)[1]
+=======
+        kwargs: Dict = super().parse(entity, parser)[1]
+>>>>>>> ff96f97 (Fix linter errors)
 
         world_sdf_file = entity.get_attr(
             'world_sdf_file', data_type=str,
@@ -177,7 +199,10 @@ class GzServer(Action):
 
     def execute(self, context: LaunchContext) -> Optional[List[Action]]:
         """Execute the action."""
+<<<<<<< HEAD
 
+=======
+>>>>>>> ff96f97 (Fix linter errors)
         launch_descriptions: List[Action] = []
 
         model_paths, plugin_paths = GazeboRosPaths.get_paths()
@@ -195,8 +220,17 @@ class GzServer(Action):
                 model_paths,
             ])))
 
+<<<<<<< HEAD
         use_composition_eval = perform_typed_substitution(context, self.__use_composition, bool)
         create_own_container_eval = perform_typed_substitution(context, self.__create_own_container, bool)
+=======
+        use_composition_eval = perform_typed_substitution(
+            context, self.__use_composition, bool
+        )
+        create_own_container_eval = perform_typed_substitution(
+            context, self.__create_own_container, bool
+        )
+>>>>>>> ff96f97 (Fix linter errors)
         if not use_composition_eval:
             # Standard node configuration
             launch_descriptions.append(Node(

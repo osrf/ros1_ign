@@ -2,6 +2,7 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 1.0.7 (2024-11-08)
 ------------------
 
@@ -50,6 +51,48 @@ Changelog for package ros_gz_bridge
 
 1.0.2 (2024-07-03)
 ------------------
+=======
+2.1.2 (2024-10-31)
+------------------
+
+2.1.1 (2024-10-14)
+------------------
+* Extra parameter to start a container (`#616 <https://github.com/gazebosim/ros_gz/issues/616>`_)
+* adds deadline and liveliness QoSPolicyKinds to qos_overriding_options (`#609 <https://github.com/gazebosim/ros_gz/issues/609>`_)
+  Co-authored-by: nora <nko@bogaertsgl.com>
+* Contributors: Carlos Agüero, norakon
+
+2.1.0 (2024-09-12)
+------------------
+* Remove default_value for required arguments (`#602 <https://github.com/gazebosim/ros_gz//issues/602>`_)
+  * Remove default_value for config_file
+* Fix errors with name of bridge not being given (`#600 <https://github.com/gazebosim/ros_gz//issues/600>`_)
+  * Add argument bridge_name to fix errors
+* Use optional parameters in actions (`#601 <https://github.com/gazebosim/ros_gz//issues/601>`_)
+* Contributors: Amronos, Carlos Agüero
+
+2.0.1 (2024-08-29)
+------------------
+* Stamp all outgoing headers with the wall time if parameter override_timestamps_with_wall_time is set to true (`#562 <https://github.com/gazebosim/ros_gz/issues/562>`_)
+* Contributors: Rein Appeldoorn
+
+2.0.0 (2024-07-22)
+------------------
+* Making use_composition true by default (`#578 <https://github.com/gazebosim/ros_gz/issues/578>`_)
+* Contributors: Addisu Z. Taddese
+
+1.0.1 (2024-07-03)
+------------------
+* Add support for gz.msgs.EntityWrench (base branch: ros2) (`#573 <https://github.com/gazebosim/ros_gz//issues/573>`_)
+* Merge pull request `#571 <https://github.com/gazebosim/ros_gz//issues/571>`_ from azeey/jazzy_to_ros2
+  Merge jazzy ➡️  ros2
+* Merge branch 'ros2' into jazzy_to_ros2
+* Use memcpy instead of std::copy when bridging images (`#565 <https://github.com/gazebosim/ros_gz//issues/565>`_)
+  While testing ros <-> gz communication using the bridge I noticed that the bridge was talking quite a bit of time copying images from Gazebo to ROS. I found that the std::copy operation that we're doing is substantially slower than the memcpy alternative. I think that in principle this shouldn't happen but the numbers are quite clear. Perhaps std::copy is doing something that doesn't use cache effectively
+  ---------
+  Co-authored-by: Jose Luis Rivero <jrivero@osrfoundation.org>
+* Merge jazzy into ros2
+>>>>>>> ff96f97 (Fix linter errors)
 * Merge pull request `#569 <https://github.com/gazebosim/ros_gz//issues/569>`_ from azeey/iron_to_jazzy
   Merge iron ➡️  jazzy
 * Merge iron into jazzy
@@ -62,6 +105,25 @@ Changelog for package ros_gz_bridge
 * Merge pull request `#564 <https://github.com/gazebosim/ros_gz//issues/564>`_ from azeey/humble_to_iron
   Humble ➡️ Iron
 * Merge humble -> iron
+<<<<<<< HEAD
+=======
+* Use `ignoreLocalMessages` in the bridge (`#559 <https://github.com/gazebosim/ros_gz//issues/559>`_)
+  * Ignore local messages
+* Update launch files with name parameter (`#556 <https://github.com/gazebosim/ros_gz//issues/556>`_)
+  * Name is required.
+* Ensure the same container is used for the bridge and gz_server (`#553 <https://github.com/gazebosim/ros_gz//issues/553>`_)
+  This also adds a required `name` parameter for the bridge so that
+  multiple different bridges can be created without name collision
+* Launch ros_gz_bridge from xml (`#550 <https://github.com/gazebosim/ros_gz//issues/550>`_)
+  * Add gzserver with ability to load an SDF file or string
+* Launch gzserver and the bridge as composable nodes (`#528 <https://github.com/gazebosim/ros_gz//issues/528>`_)
+  * Add gzserver with ability to load an SDF file or string
+* Add option to change material color from ROS. (`#521 <https://github.com/gazebosim/ros_gz//issues/521>`_)
+  Forward port of `#486 <https://github.com/gazebosim/ros_gz//issues/486>`_.
+  * Message and bridge for MaterialColor.
+  This allows bridging MaterialColor from ROS to GZ and is
+  important for allowing simulation users to create status lights.
+>>>>>>> ff96f97 (Fix linter errors)
 * populate imu covariances when converting (`#375 <https://github.com/gazebosim/ros_gz//issues/375>`_) (`#540 <https://github.com/gazebosim/ros_gz//issues/540>`_)
   Co-authored-by: El Jawad Alaa <ejalaa12@gmail.com>
 * Prepare for 1.0.0 Release (`#495 <https://github.com/gazebosim/ros_gz//issues/495>`_)
@@ -151,7 +213,11 @@ Changelog for package ros_gz_bridge
   * Update CMakeLists and package.xml for garden
   * Complete garden gz renaming
   * Drop fortress CI
+<<<<<<< HEAD
 * Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Arjun K Haridas, Benjamin Perseghetti, El Jawad Alaa, Jose Luis Rivero, Krzysztof Wojciechowski, Michael Carroll, Rousseau Vincent, Yadu, ahcorde, wittenator, ymd-stella
+=======
+* Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Arjun K Haridas, Benjamin Perseghetti, Carlos Agüero, El Jawad Alaa, Jose Luis Rivero, Krzysztof Wojciechowski, Michael Carroll, Rousseau Vincent, Victor T. Noppeney, Yadu, ahcorde, wittenator, ymd-stella
+>>>>>>> ff96f97 (Fix linter errors)
 
 1.0.0 (2024-04-24)
 ------------------

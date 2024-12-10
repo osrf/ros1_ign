@@ -64,6 +64,7 @@ class RosGzBridge(Action):
         self.__container_name = container_name
         self.__namespace = namespace
 
+<<<<<<< HEAD
         # This is here to allow using strings or booleans as values for boolean variables when the Action is used from Python
         # i.e., this allows users to do:
         #   RosGzBridge(bridge_name='bridge1', use_composition='true', create_own_container=True)
@@ -77,6 +78,28 @@ class RosGzBridge(Action):
 
         if isinstance(use_composition, str):
             self.__use_composition = normalize_typed_substitution(TextSubstitution(text=use_composition), bool)
+=======
+        # This is here to allow using strings or booleans as values for boolean variables when
+        # the Action is used from Python i.e., this allows users to do:
+        #   RosGzBridge(bridge_name='bridge1', use_composition='true', create_own_container=True)
+        # Note that use_composition is set to a string while create_own_container is set to a
+        # boolean. The reverse would also work.
+        # At some point, we might want to deprecate this and only allow setting booleans since
+        # that's what users would expect when calling this from Python
+        if isinstance(create_own_container, str):
+            self.__create_own_container = normalize_typed_substitution(
+                TextSubstitution(text=create_own_container), bool
+            )
+        else:
+            self.__create_own_container = normalize_typed_substitution(
+                create_own_container, bool
+            )
+
+        if isinstance(use_composition, str):
+            self.__use_composition = normalize_typed_substitution(
+                TextSubstitution(text=use_composition), bool
+            )
+>>>>>>> ff96f97 (Fix linter errors)
         else:
             self.__use_composition = normalize_typed_substitution(use_composition, bool)
 
@@ -87,7 +110,11 @@ class RosGzBridge(Action):
     @classmethod
     def parse(cls, entity: Entity, parser: Parser):
         """Parse ros_gz_bridge."""
+<<<<<<< HEAD
         kwargs:Dict = super().parse(entity, parser)[1]
+=======
+        kwargs: Dict = super().parse(entity, parser)[1]
+>>>>>>> ff96f97 (Fix linter errors)
 
         bridge_name = entity.get_attr(
             'bridge_name', data_type=str,
@@ -183,8 +210,17 @@ class RosGzBridge(Action):
             bridge_params_pairs = simplified_bridge_params.split(',')
             parsed_bridge_params = dict(pair.split(':') for pair in bridge_params_pairs)
 
+<<<<<<< HEAD
         use_composition_eval = perform_typed_substitution(context, self.__use_composition, bool)
         create_own_container_eval = perform_typed_substitution(context, self.__create_own_container, bool)
+=======
+        use_composition_eval = perform_typed_substitution(
+            context, self.__use_composition, bool
+        )
+        create_own_container_eval = perform_typed_substitution(
+            context, self.__create_own_container, bool
+        )
+>>>>>>> ff96f97 (Fix linter errors)
 
         launch_descriptions: List[Action] = []
 
