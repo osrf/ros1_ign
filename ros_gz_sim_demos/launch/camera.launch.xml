@@ -8,6 +8,6 @@
     config_file="$(find-pkg-share ros_gz_sim_demos)/config/camera.yaml"
     use_composition="True" />
   <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/camera.rviz" />
-  <node pkg="tf2_ros" exec="static_transform_publisher" args="--frame-id camera_link  --child-frame-id camera_optical --roll 1.570796327 --yaw 1.570796327" />
+  <node pkg="tf2_ros" exec="static_transform_publisher" args="--frame-id camera_link  --child-frame-id camera/link/camera --roll 1.570796327 --yaw 1.570796327" />
   <executable cmd="gz sim -g" />
 </launch>
