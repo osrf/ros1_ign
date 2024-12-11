@@ -12,7 +12,11 @@ jobs:
         include:
           - docker-image: "ubuntu:24.04"
             gz-version: "harmonic"
+<<<<<<< HEAD
             ros-distro: "jazzy"
+=======
+            ros-distro: "rolling"
+>>>>>>> 705ee56 (Merge remote-tracking branch 'origin/ros2' into improve_parameter_handling)
     container:
       image: ${{ matrix.docker-image }}
     steps:

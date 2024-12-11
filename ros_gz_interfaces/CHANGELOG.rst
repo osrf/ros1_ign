@@ -2,6 +2,7 @@
 Changelog for package ros_gz_interfaces
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+<<<<<<< HEAD
 1.0.7 (2024-11-08)
 ------------------
 
@@ -23,12 +24,40 @@ Changelog for package ros_gz_interfaces
 
 1.0.2 (2024-07-03)
 ------------------
+=======
+2.1.2 (2024-10-31)
+------------------
+
+2.1.1 (2024-10-14)
+------------------
+
+2.1.0 (2024-09-12)
+------------------
+
+2.0.1 (2024-08-29)
+------------------
+
+2.0.0 (2024-07-22)
+------------------
+
+1.0.1 (2024-07-03)
+------------------
+* Add support for gz.msgs.EntityWrench (base branch: ros2) (`#573 <https://github.com/gazebosim/ros_gz//issues/573>`_)
+>>>>>>> 705ee56 (Merge remote-tracking branch 'origin/ros2' into improve_parameter_handling)
 * Add option to change material color from ROS. (`#521 <https://github.com/gazebosim/ros_gz//issues/521>`_)
   Forward port of `#486 <https://github.com/gazebosim/ros_gz//issues/486>`_.
   * Message and bridge for MaterialColor.
   This allows bridging MaterialColor from ROS to GZ and is
   important for allowing simulation users to create status lights.
   (cherry picked from commit 78dc4823121f085594e6028a93f1e571eb04f58b)
+<<<<<<< HEAD
+=======
+* Add option to change material color from ROS. (`#521 <https://github.com/gazebosim/ros_gz//issues/521>`_)
+  Forward port of `#486 <https://github.com/gazebosim/ros_gz//issues/486>`_.
+  * Message and bridge for MaterialColor.
+  This allows bridging MaterialColor from ROS to GZ and is
+  important for allowing simulation users to create status lights.
+>>>>>>> 705ee56 (Merge remote-tracking branch 'origin/ros2' into improve_parameter_handling)
 * Prepare for 1.0.0 Release (`#495 <https://github.com/gazebosim/ros_gz//issues/495>`_)
 * 0.244.14
 * Changelog
@@ -60,7 +89,11 @@ Changelog for package ros_gz_interfaces
 * humble to ros2 (`#311 <https://github.com/gazebosim/ros_gz//issues/311>`_)
   Co-authored-by: Michael Carroll <michael@openrobotics.org>
 * Merge remote-tracking branch 'origin/humble' into ahcorde/humble_to_ros2
+<<<<<<< HEAD
 * Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Benjamin Perseghetti, Jose Luis Rivero, Michael Carroll, ahcorde
+=======
+* Contributors: Addisu Z. Taddese, Aditya Pande, Alejandro Hernández Cordero, Benjamin Perseghetti, Jose Luis Rivero, Michael Carroll, Victor T. Noppeney, ahcorde
+>>>>>>> 705ee56 (Merge remote-tracking branch 'origin/ros2' into improve_parameter_handling)
 
 1.0.0 (2024-04-24)
 ------------------
