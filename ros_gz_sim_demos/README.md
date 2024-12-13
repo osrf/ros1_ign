@@ -146,7 +146,12 @@ Publishes magnetic field readings.
 
 Publishes satellite navigation readings, only available in Fortress on.
 
+GNSS information can be obtained as:
+
+    # sensor_msgs/msg/NavSatFix
     ros2 launch ros_gz_sim_demos navsat.launch.xml
+    # gps_msgs/msg/GPSFix
+    ros2 launch ros_gz_sim_demos navsat_gpsfix.launch.xml
 
 ![](images/navsat_demo.png)
 
