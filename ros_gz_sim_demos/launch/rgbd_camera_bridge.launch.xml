@@ -8,5 +8,6 @@
     config_file="$(find-pkg-share ros_gz_sim_demos)/config/rgbd_camera_bridge.yaml"
     use_composition="True" />
   <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/rgbd_camera_bridge.rviz" />
+  <node pkg="tf2_ros" exec="static_transform_publisher" args="--frame-id rgbd_camera --child-frame-id rgbd_camera/link/rgbd_camera" />
   <executable cmd="gz sim -g" />
 </launch>
