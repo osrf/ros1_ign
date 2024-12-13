@@ -126,7 +126,7 @@ Publishes IMU readings.
 
 Publishes magnetic field readings.
 
-    ros2 launch ros_gz_sim_demos magnetometer.launch.py
+    ros2 launch ros_gz_sim_demos magnetometer.launch.xml
 
 ![](images/magnetometer_demo.png)
 
