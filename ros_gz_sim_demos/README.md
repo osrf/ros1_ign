@@ -116,7 +116,7 @@ Using Gazebo Sim plugin:
 
 Publishes IMU readings.
 
-    ros2 launch ros_gz_sim_demos imu.launch.py
+    ros2 launch ros_gz_sim_demos imu.launch.xml
 
 ![](images/imu_demo.png)
 
