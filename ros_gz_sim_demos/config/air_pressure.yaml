@@ -1,0 +1,6 @@
+# Air pressure bridge configuration.
+- topic_name: "air_pressure"
+  ros_type_name: "sensor_msgs/msg/FluidPressure"
+  gz_type_name: "gz.msgs.FluidPressure"
+  lazy: true
+  direction: GZ_TO_ROS
