@@ -8,7 +8,6 @@
     config_file="$(find-pkg-share ros_gz_sim_demos)/config/imu.yaml"
     use_composition="True" />
   <node pkg="rqt_topic" exec="rqt_topic" args="-t" />
-  <!-- FIXME: Add once there's an IMU display for RViz2 -->
-  <!-- <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/imu.rviz" /> -->
+  <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/imu.rviz" />
   <executable cmd="gz sim -g" />
 </launch>
