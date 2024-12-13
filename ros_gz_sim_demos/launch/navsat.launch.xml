@@ -1,0 +1,12 @@
+<launch>
+  <gz_server
+    world_sdf_file="spherical_coordinates.sdf"
+    use_composition="True"
+    create_own_container="True" />
+  <ros_gz_bridge
+    bridge_name="ros_gz_bridge"
+    config_file="$(find-pkg-share ros_gz_sim_demos)/config/navsat.yaml"
+    use_composition="True" />
+  <node pkg="rqt_topic" exec="rqt_topic" args="-t" />
+  <executable cmd="gz sim -g" />
+</launch>
