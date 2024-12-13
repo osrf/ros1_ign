@@ -208,6 +208,6 @@ and transforms of a robot in rviz.
 
 To try the demo launch:
 
-    ros2 launch ros_gz_sim_demos tf_bridge.launch.py
+    ros2 launch ros_gz_sim_demos tf_bridge.launch.xml
 
 ![](images/tf_bridge.gif)
