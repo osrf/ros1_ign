@@ -116,7 +116,7 @@ Using Gazebo Sim plugin:
 
 Publishes IMU readings.
 
-    ros2 launch ros_gz_sim_demos imu.launch.py
+    ros2 launch ros_gz_sim_demos imu.launch.xml
 
 ![](images/imu_demo.png)
 
@@ -126,7 +126,7 @@ Publishes IMU readings.
 
 Publishes magnetic field readings.
 
-    ros2 launch ros_gz_sim_demos magnetometer.launch.py
+    ros2 launch ros_gz_sim_demos magnetometer.launch.xml
 
 ![](images/magnetometer_demo.png)
 
@@ -208,6 +208,6 @@ and transforms of a robot in rviz.
 
 To try the demo launch:
 
-    ros2 launch ros_gz_sim_demos tf_bridge.launch.py
+    ros2 launch ros_gz_sim_demos tf_bridge.launch.xml
 
 ![](images/tf_bridge.gif)
