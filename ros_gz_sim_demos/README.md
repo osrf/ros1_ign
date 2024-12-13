@@ -134,7 +134,7 @@ Publishes magnetic field readings.
 
 Publishes satellite navigation readings, only available in Fortress on.
 
-    ros2 launch ros_gz_sim_demos navsat.launch.py
+    ros2 launch ros_gz_sim_demos navsat.launch.xml
 
 ![](images/navsat_demo.png)
 
