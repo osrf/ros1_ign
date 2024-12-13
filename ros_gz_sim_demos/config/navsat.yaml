@@ -1,0 +1,6 @@
+# Navsat configuration.
+- topic_name: "/navsat"
+  ros_type_name: "sensor_msgs/msg/NavSatFix"
+  gz_type_name: "gz.msgs.NavSat"
+  lazy: true
+  direction: GZ_TO_ROS
