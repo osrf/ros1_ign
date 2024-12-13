@@ -8,7 +8,8 @@ Panels:
         - /Status1
         - /Grid1
         - /Imu1
-        - /Imu1/Status1
+        - /Imu1/Axes properties1
+        - /Imu1/Acceleration properties1
       Splitter Ratio: 0.5
     Tree Height: 555
   - Class: rviz_common/Selection
@@ -55,7 +56,7 @@ Visualization Manager:
         Acc. vector color: 255; 0; 0
         Acc. vector scale: 1
         Derotate acceleration: true
-        Enable acceleration: false
+        Enable acceleration: true
       Axes properties:
         Axes scale: 1
         Enable axes: true
@@ -124,7 +125,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 10
+      Distance: 29.85377311706543
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
