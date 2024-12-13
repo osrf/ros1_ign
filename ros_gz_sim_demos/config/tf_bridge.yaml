@@ -1,0 +1,14 @@
+# tf_bridge configuration.
+- ros_topic_name: "/joint_states"
+  gz_topic_name: "/world/default/model/double_pendulum_with_base0/joint_state"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "gz.msgs.Model"
+  lazy: true
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/tf"
+  gz_topic_name: "/model/double_pendulum_with_base0/pose"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  lazy: true
+  direction: GZ_TO_ROS
