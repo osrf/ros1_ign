@@ -28,6 +28,18 @@ And
 
 ![](images/air_pressure_demo.png)
 
+## Battery
+
+Get the current state of a battery.
+
+    ros2 launch ros_gz_sim_demos battery.launch.py
+
+Then send a command so the vehicle moves and drains the battery.
+
+    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
+
+![](images/battery_demo.png)
+
 ## Camera
 
 Publishes RGB camera image and info.
@@ -168,18 +180,6 @@ Using Gazebo Sim plugin:
     ros2 launch ros_gz_sim_demos rgbd_camera.launch.py
 
 ![](images/rgbd_camera_demo.png)
-
-## Battery
-
-Get the current state of a battery.
-
-    ros2 launch ros_gz_sim_demos battery.launch.py
-
-Then send a command so the vehicle moves and drains the battery
-
-    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
-
-![](images/battery_demo.png)
 
 ## Robot description publisher
 
