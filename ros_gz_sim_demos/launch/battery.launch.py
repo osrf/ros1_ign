@@ -15,20 +15,20 @@
 import os
 
 from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-
 from launch_ros.actions import Node
+from ros_gz_bridge.actions import RosGzBridge
 
 
 def generate_launch_description():
 
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
+    pkg_ros_gz_sim_demos = get_package_share_directory('ros_gz_sim_demos')
 
     # RQt
     rqt = Node(
@@ -40,6 +40,7 @@ def generate_launch_description():
         condition=IfCondition(LaunchConfiguration('rqt'))
     )
 
+    # Gazebo
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
@@ -49,21 +50,15 @@ def generate_launch_description():
     )
 
     # Bridge
-    bridge = Node(
-        package='ros_gz_bridge',
-        executable='parameter_bridge',
-        arguments=[
-            '/model/vehicle_blue/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-            '/model/vehicle_blue/battery/linear_battery/state@sensor_msgs/msg/BatteryState@'
-            'gz.msgs.BatteryState'
-        ],
-        output='screen'
+    ros_gz_bridge = RosGzBridge(
+        bridge_name='ros_gz_bridge',
+        config_file=os.path.join(pkg_ros_gz_sim_demos, 'config', 'battery.yaml'),
     )
 
     return LaunchDescription([
         gz_sim,
         DeclareLaunchArgument('rqt', default_value='true',
                               description='Open RQt.'),
-        bridge,
+        ros_gz_bridge,
         rqt
     ])
