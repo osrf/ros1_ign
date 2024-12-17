@@ -135,6 +135,9 @@ int main(int _argc, char ** _argv)
   ros2_node->declare_parameter("P", static_cast<double>(0));
   ros2_node->declare_parameter("Y", static_cast<double>(0));
 
+  auto always_shutdown = rcpputils::make_scope_exit(
+    []() {rclcpp::shutdown();});
+
   // World
   std::string world_name = ros2_node->get_parameter("world").as_string();
   if (world_name.empty() && !FLAGS_world.empty()) {
@@ -158,13 +161,11 @@ int main(int _argc, char ** _argv)
 
     if (!executed) {
       RCLCPP_INFO(ros2_node->get_logger(), "Timed out when getting world names.");
-      rclcpp::shutdown();
       return -1;
     }
 
     if (!result || worlds_msg.data().empty()) {
       RCLCPP_INFO(ros2_node->get_logger(), "Failed to get world names.");
-      rclcpp::shutdown();
       return -1;
     }
 
@@ -187,7 +188,6 @@ int main(int _argc, char ** _argv)
   } else if (!topic_name.empty()) {
     // set XML string by fetching it from the given topic
     if (!set_XML_from_topic(topic_name, ros2_node, req)) {
-      rclcpp::shutdown();
       return -1;
     }
   } else if (filtered_arguments.size() > 1) {
@@ -203,7 +203,6 @@ int main(int _argc, char ** _argv)
       } else {
         RCLCPP_ERROR(
           ros2_node->get_logger(), "Failed to get XML from param [%s].", FLAGS_param.c_str());
-        rclcpp::shutdown();
         return -1;
       }
     } else if (!FLAGS_string.empty()) {  // string
@@ -211,13 +210,11 @@ int main(int _argc, char ** _argv)
     } else if (!FLAGS_topic.empty()) {  // topic
       // set XML string by fetching it from the given topic
       if (!set_XML_from_topic(FLAGS_topic, ros2_node, req)) {
-        rclcpp::shutdown();
         return -1;
       }
     } else {
       RCLCPP_ERROR(
         ros2_node->get_logger(), "Must specify either -file, -param, -string or -topic");
-      rclcpp::shutdown();
       return -1;
     }
     // TODO(azeey) Deprecate use of command line flags in ROS 2 K-turtle in
@@ -225,7 +222,6 @@ int main(int _argc, char ** _argv)
   } else {
     RCLCPP_ERROR(
       ros2_node->get_logger(), "Must specify either file, string or topic as ROS 2 parameters");
-    rclcpp::shutdown();
     return -1;
   }
 
@@ -268,13 +264,11 @@ int main(int _argc, char ** _argv)
     if (node.Request(service, req, timeout, rep, result)) {
       if (result && rep.data()) {
         RCLCPP_INFO(ros2_node->get_logger(), "Entity creation successfull.");
-        rclcpp::shutdown();
         return 0;
       } else {
         RCLCPP_ERROR(
           ros2_node->get_logger(), "Entity creation failed.\n %s",
           req.DebugString().c_str());
-        rclcpp::shutdown();
         return 1;
       }
     } else {
@@ -284,6 +278,5 @@ int main(int _argc, char ** _argv)
     }
   }
   RCLCPP_INFO(ros2_node->get_logger(), "Entity creation was interrupted.");
-  rclcpp::shutdown();
   return 0;
 }
