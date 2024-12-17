@@ -2,7 +2,7 @@
 
 ROS 2 version | Gazebo version | Branch | Binaries hosted at
 -- | -- | -- | --
-Foxy | Citadel | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | https://packages.ros.org
+Foxy | Citadel | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | https://packages.ros.org [^2]
 Foxy | Edifice | [foxy](https://github.com/gazebosim/ros_gz/tree/foxy) | only from source [^2]
 Galactic | Edifice | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | https://packages.ros.org [^2]
 Galactic | Fortress | [galactic](https://github.com/gazebosim/ros_gz/tree/galactic) | only from source
