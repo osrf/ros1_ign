@@ -1,0 +1,16 @@
+<launch>
+  <gz_server
+    world_sdf_file="sensors.sdf"
+    use_composition="true"
+    create_own_container="true" />
+  <ros_gz_bridge
+    bridge_name="ros_gz_bridge"
+    config_file="$(find-pkg-share ros_gz_sim_demos)/config/air_pressure.yaml"
+    use_composition="true">
+    <param name="qos_overrides./air_pressure.publisher.reliability" value='best_effort'></param>
+  </ros_gz_bridge>
+  <node pkg="rqt_topic" exec="rqt_topic">
+    <param name="qos_overrides./air_pressure.subscription.reliability" value="best_effort"/>
+  </node>
+  <executable cmd="gz sim -g" />
+</launch>
