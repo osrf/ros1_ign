@@ -68,9 +68,9 @@ Trigger the camera:
 
 Send commands to a differential drive vehicle and listen to its odometry.
 
-    ros2 launch ros_gz_sim_demos diff_drive.launch.py
+    ros2 launch ros_gz_sim_demos diff_drive.launch.xml
 
-Then unpause and send a command
+Then send a command
 
     ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
 
