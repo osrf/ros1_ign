@@ -52,7 +52,7 @@ Using the image bridge (unidirectional, uses [image_transport](http://wiki.ros.o
 
 Using the regular bridge:
 
-    ros2 launch ros_gz_sim_demos camera.launch.py
+    ros2 launch ros_gz_sim_demos camera.launch.xml
 
 To use a camera that only publishes information when triggered:
 
@@ -114,7 +114,7 @@ GPU lidar data can be obtained as:
 
 Using the bridge:
 
-    ros2 launch ros_gz_sim_demos gpu_lidar_bridge.launch.py
+    ros2 launch ros_gz_sim_demos gpu_lidar_bridge.launch.xml
 
 *TODO*: Blocked by `ros_gz_point_cloud` [issue](https://github.com/gazebosim/ros_gz/issues/40).
 
