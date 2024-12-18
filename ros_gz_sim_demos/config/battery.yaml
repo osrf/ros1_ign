@@ -1,0 +1,12 @@
+# Battery configuration.
+- topic_name: "/model/vehicle_blue/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  lazy: true
+  direction: ROS_TO_GZ
+
+- topic_name: "/model/vehicle_blue/battery/linear_battery/state"
+  ros_type_name: "sensor_msgs/msg/BatteryState"
+  gz_type_name: "gz.msgs.BatteryState"
+  lazy: true
+  direction: GZ_TO_ROS
