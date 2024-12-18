@@ -1,0 +1,13 @@
+<launch>
+  <gz_server
+    world_sdf_file="triggered_camera_sensor.sdf"
+    use_composition="True"
+    create_own_container="True" />
+  <ros_gz_bridge
+    bridge_name="ros_gz_bridge"
+    config_file="$(find-pkg-share ros_gz_sim_demos)/config/triggered_camera.yaml"
+    use_composition="True" />
+  <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share ros_gz_sim_demos)/rviz/camera.rviz" />
+  <node pkg="tf2_ros" exec="static_transform_publisher" args="--frame-id camera_link  --child-frame-id camera/link/camera --roll 1.570796327 --yaw 1.570796327" />
+  <executable cmd="gz sim -g" />
+</launch>
