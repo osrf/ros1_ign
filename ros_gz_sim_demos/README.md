@@ -171,7 +171,7 @@ Using the image bridge (unidirectional, uses [image_transport](http://wiki.ros.o
 
 Using the regular bridge:
 
-    ros2 launch ros_gz_sim_demos rgbd_camera_bridge.launch.py
+    ros2 launch ros_gz_sim_demos rgbd_camera_bridge.launch.xml
 
 *TODO*: Blocked by `ros_gz_point_cloud` [issue](https://github.com/gazebosim/ros_gz/issues/40).
 
