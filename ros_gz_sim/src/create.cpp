@@ -31,6 +31,7 @@
 #include <gz/transport/Node.hh>
 
 #include <rclcpp/rclcpp.hpp>
+#include <rcpputils/scope_exit.hpp>
 #include <std_msgs/msg/string.hpp>
 
 // ROS interface for spawning entities into Gazebo.
