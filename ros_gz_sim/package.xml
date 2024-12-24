@@ -23,6 +23,7 @@
   <depend>libgflags-dev</depend>
   <depend>rclcpp</depend>
   <depend>rclcpp_components</depend>
+  <depend>rcpputils</depend>
   <depend>std_msgs</depend>
 
   <depend>gz_math_vendor</depend>

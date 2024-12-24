@@ -13,6 +13,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
+find_package(rcpputils REQUIRED)
 find_package(std_msgs REQUIRED)
 
 find_package(gz_math_vendor REQUIRED)
@@ -47,6 +48,7 @@ target_link_libraries(create
   gz-math::core
   gz-msgs::core
   gz-transport::core
+  rcpputils::rcpputils
 )
 
 add_executable(remove src/remove.cpp)
