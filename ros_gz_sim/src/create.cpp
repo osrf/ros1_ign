@@ -31,6 +31,7 @@
 #include <gz/transport/Node.hh>
 
 #include <rclcpp/rclcpp.hpp>
+#include <rcpputils/scope_exit.hpp>
 #include <std_msgs/msg/string.hpp>
 
 // ROS interface for spawning entities into Gazebo.
@@ -134,6 +135,9 @@ int main(int _argc, char ** _argv)
   ros2_node->declare_parameter("R", static_cast<double>(0));
   ros2_node->declare_parameter("P", static_cast<double>(0));
   ros2_node->declare_parameter("Y", static_cast<double>(0));
+
+  auto always_shutdown = rcpputils::make_scope_exit(
+    []() {rclcpp::shutdown();});
 
   // World
   std::string world_name = ros2_node->get_parameter("world").as_string();
