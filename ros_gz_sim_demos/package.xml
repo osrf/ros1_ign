@@ -25,6 +25,7 @@
   <exec_depend>rviz_imu_plugin</exec_depend>
   <exec_depend>rviz2</exec_depend>
   <exec_depend>sdformat_urdf</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
   <exec_depend>xacro</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
