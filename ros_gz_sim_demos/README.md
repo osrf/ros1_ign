@@ -14,7 +14,7 @@ There's a convenient launch file, try for example:
 
 Publishes fluid pressure readings.
 
-    ros2 launch ros_gz_sim_demos air_pressure.launch.py
+    ros2 launch ros_gz_sim_demos air_pressure.launch.xml
 
 This demo also shows the use of custom QoS parameters. The sensor data is
 published as as "best-effort", so trying to subscribe to "reliable" data won't
@@ -28,6 +28,18 @@ And
 
 ![](images/air_pressure_demo.png)
 
+## Battery
+
+Get the current state of a battery.
+
+    ros2 launch ros_gz_sim_demos battery.launch.py
+
+Then send a command so the vehicle moves and drains the battery.
+
+    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
+
+![](images/battery_demo.png)
+
 ## Camera
 
 Publishes RGB camera image and info.
@@ -40,11 +52,11 @@ Using the image bridge (unidirectional, uses [image_transport](http://wiki.ros.o
 
 Using the regular bridge:
 
-    ros2 launch ros_gz_sim_demos camera.launch.py
+    ros2 launch ros_gz_sim_demos camera.launch.xml
 
 To use a camera that only publishes information when triggered:
 
-    ros2 launch ros_gz_sim_demos triggered_camera.launch.py
+    ros2 launch ros_gz_sim_demos triggered_camera.launch.xml
 
 Trigger the camera:
 
@@ -56,9 +68,9 @@ Trigger the camera:
 
 Send commands to a differential drive vehicle and listen to its odometry.
 
-    ros2 launch ros_gz_sim_demos diff_drive.launch.py
+    ros2 launch ros_gz_sim_demos diff_drive.launch.xml
 
-Then unpause and send a command
+Then send a command
 
     ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
 
@@ -102,7 +114,7 @@ GPU lidar data can be obtained as:
 
 Using the bridge:
 
-    ros2 launch ros_gz_sim_demos gpu_lidar_bridge.launch.py
+    ros2 launch ros_gz_sim_demos gpu_lidar_bridge.launch.xml
 
 *TODO*: Blocked by `ros_gz_point_cloud` [issue](https://github.com/gazebosim/ros_gz/issues/40).
 
@@ -116,7 +128,7 @@ Using Gazebo Sim plugin:
 
 Publishes IMU readings.
 
-    ros2 launch ros_gz_sim_demos imu.launch.py
+    ros2 launch ros_gz_sim_demos imu.launch.xml
 
 ![](images/imu_demo.png)
 
@@ -126,7 +138,7 @@ Publishes IMU readings.
 
 Publishes magnetic field readings.
 
-    ros2 launch ros_gz_sim_demos magnetometer.launch.py
+    ros2 launch ros_gz_sim_demos magnetometer.launch.xml
 
 ![](images/magnetometer_demo.png)
 
@@ -134,7 +146,12 @@ Publishes magnetic field readings.
 
 Publishes satellite navigation readings, only available in Fortress on.
 
-    ros2 launch ros_gz_sim_demos navsat.launch.py
+GNSS information can be obtained as:
+
+    # sensor_msgs/msg/NavSatFix
+    ros2 launch ros_gz_sim_demos navsat.launch.xml
+    # gps_msgs/msg/GPSFix
+    ros2 launch ros_gz_sim_demos navsat_gpsfix.launch.xml
 
 ![](images/navsat_demo.png)
 
@@ -154,7 +171,7 @@ Using the image bridge (unidirectional, uses [image_transport](http://wiki.ros.o
 
 Using the regular bridge:
 
-    ros2 launch ros_gz_sim_demos rgbd_camera_bridge.launch.py
+    ros2 launch ros_gz_sim_demos rgbd_camera_bridge.launch.xml
 
 *TODO*: Blocked by `ros_gz_point_cloud` [issue](https://github.com/gazebosim/ros_gz/issues/40).
 
@@ -163,18 +180,6 @@ Using Gazebo Sim plugin:
     ros2 launch ros_gz_sim_demos rgbd_camera.launch.py
 
 ![](images/rgbd_camera_demo.png)
-
-## Battery
-
-Get the current state of a battery.
-
-    ros2 launch ros_gz_sim_demos battery.launch.py
-
-Then send a command so the vehicle moves and drains the battery
-
-    ros2 topic pub /model/vehicle_blue/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
-
-![](images/battery_demo.png)
 
 ## Robot description publisher
 
@@ -203,6 +208,6 @@ and transforms of a robot in rviz.
 
 To try the demo launch:
 
-    ros2 launch ros_gz_sim_demos tf_bridge.launch.py
+    ros2 launch ros_gz_sim_demos tf_bridge.launch.xml
 
 ![](images/tf_bridge.gif)
