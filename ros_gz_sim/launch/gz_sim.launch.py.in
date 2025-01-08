@@ -23,6 +23,7 @@ from ros2pkg.api import get_package_names
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.actions import ExecuteProcess, Shutdown
+from launch.actions import LogInfo
 from launch.substitutions import LaunchConfiguration
 
 # Copied from https://github.com/ros-simulation/gazebo_ros_pkgs/blob/79fd94c6da76781a91499bc0f54b70560b90a9d2/gazebo_ros/scripts/gazebo_ros_paths.py
@@ -126,7 +127,9 @@ def launch_gz(context, *args, **kwargs):
     else:
         on_exit = None
 
-    return [ExecuteProcess(
+    return [
+        LogInfo(f"Launching gazebo with the environment variables: {env}"),
+        ExecuteProcess(
             cmd=[exec, exec_args, '--force-version', gz_version],
             name='gazebo',
             output='screen',
