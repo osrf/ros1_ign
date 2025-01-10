@@ -93,6 +93,11 @@ rclcpp_components_register_node(
   EXECUTABLE gzserver
 )
 
+target_include_directories(gzserver_component PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+
 configure_file(
   launch/gz_sim.launch.py.in
   launch/gz_sim.launch.py.configured
