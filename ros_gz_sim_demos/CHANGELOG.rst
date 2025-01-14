@@ -2,6 +2,33 @@
 Changelog for package ros1_gz_sim_demos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.3 (2025-01-14)
+------------------
+* Refactor triggered_camera demo (`#645 <https://github.com/gazebosim/ros_gz/issues/645>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Refactor rgbd_camera_bridge demo (`#643 <https://github.com/gazebosim/ros_gz/issues/643>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Refactor diff_drive demo (`#635 <https://github.com/gazebosim/ros_gz/issues/635>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Refactor gpu_lidar_bridge demo (`#636 <https://github.com/gazebosim/ros_gz/issues/636>`_)
+  * Refactor gpu_lidar_bridge demo
+* Refactor camera demo (`#634 <https://github.com/gazebosim/ros_gz/issues/634>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Refactor battery demo (`#633 <https://github.com/gazebosim/ros_gz/issues/633>`_)
+* Refactor tf_bridge demo (`#644 <https://github.com/gazebosim/ros_gz/issues/644>`_)
+* Refactor magnetometer demo (`#638 <https://github.com/gazebosim/ros_gz/issues/638>`_)
+* Refactor imu demo (`#637 <https://github.com/gazebosim/ros_gz/issues/637>`_)
+  * Refactor imu demo
+* Refactor navsat_gpxfix demo (`#642 <https://github.com/gazebosim/ros_gz/issues/642>`_)
+  * Refactor navsat_gpxfix demo
+* Refactor navsat demo (`#639 <https://github.com/gazebosim/ros_gz/issues/639>`_)
+  * Refactor navsat demo
+* Refactor air pressure demo (`#632 <https://github.com/gazebosim/ros_gz/issues/632>`_)
+  * Refactor air pressure demo
+  Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Contributors: Carlos Agüero
+
 2.1.2 (2024-10-31)
 ------------------
 
