@@ -1,6 +1,6 @@
 <package format="3">
   <name>ros_gz_interfaces</name>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
   <description>Message and service data structures for interacting with Gazebo from ROS2.</description>
   <license>Apache 2.0</license>
   <author>Louise Poubel</author>
