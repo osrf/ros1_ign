@@ -2,6 +2,30 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.8 (2025-01-14)
+------------------
+* Merge pull request `#670 <https://github.com/gazebosim/ros_gz/issues/670>`_ from gazebosim/ahcorde/jazzy/bp/663
+  [backport Jazzy] Improve argument parsing in Actions (`#663 <https://github.com/gazebosim/ros_gz/issues/663>`_)
+* Fix linter errors
+* Improve argument parsing in Actions
+  The `RosGzBridge` and `GzServer` now support different spellings for
+  boolean arguments (`True`, `true`). This also simplifies how
+  conditionals are used to create composable nodes by evaluating the
+  conditionals and using them as regular Python booleans instead of
+  relying on `PythonExpression`. It was actually the `PythonExpression`
+  that was preventing support of boolean arguments spelled `true`/`false`.
+* Fix use_respawn argument causing errors (`#651 <https://github.com/gazebosim/ros_gz/issues/651>`_) (`#654 <https://github.com/gazebosim/ros_gz/issues/654>`_)
+  (cherry picked from commit cfd0f8c74ded9efdcb35410135d0a1da1727dcff)
+  Co-authored-by: Aarav Gupta <amronos275@gmail.com>
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Add a way to pass extra parameters to ros_gz_bridge (`#628 <https://github.com/gazebosim/ros_gz/issues/628>`_) (`#648 <https://github.com/gazebosim/ros_gz/issues/648>`_)
+  * Add bridge_params argument to ros_gz_bridge
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  Co-authored-by: Wiktor Bajor <69388767+Wiktor-99@users.noreply.github.com>
+  (cherry picked from commit 558a1cfd55f9921e78a87c563d8ed847e9eae6bd)
+  Co-authored-by: Aarav Gupta <amronos275@gmail.com>
+* Contributors: Addisu Z. Taddese, Alejandro Hernández Cordero, mergify[bot]
+
 1.0.7 (2024-11-08)
 ------------------
 

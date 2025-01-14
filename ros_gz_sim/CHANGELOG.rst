@@ -2,6 +2,41 @@
 Changelog for package ros_gz_sim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.8 (2025-01-14)
+------------------
+* Shutdown explicitly while existing (`#623 <https://github.com/gazebosim/ros_gz/issues/623>`_) (`#679 <https://github.com/gazebosim/ros_gz/issues/679>`_)
+  (cherry picked from commit 550ef7bd800c0dcc32ec7813168ef653ed169c89)
+  Co-authored-by: ChenYing Kuo (CY) <evshary@gmail.com>
+* Merge pull request `#670 <https://github.com/gazebosim/ros_gz/issues/670>`_ from gazebosim/ahcorde/jazzy/bp/663
+  [backport Jazzy] Improve argument parsing in Actions (`#663 <https://github.com/gazebosim/ros_gz/issues/663>`_)
+* Fix linter errors
+* Improve argument parsing in Actions
+  The `RosGzBridge` and `GzServer` now support different spellings for
+  boolean arguments (`True`, `true`). This also simplifies how
+  conditionals are used to create composable nodes by evaluating the
+  conditionals and using them as regular Python booleans instead of
+  relying on `PythonExpression`. It was actually the `PythonExpression`
+  that was preventing support of boolean arguments spelled `true`/`false`.
+* Set env path (`#659 <https://github.com/gazebosim/ros_gz/issues/659>`_) (`#661 <https://github.com/gazebosim/ros_gz/issues/661>`_)
+  (cherry picked from commit 0eae6ffbaabb514c9a80e6add1f49f16ade72a2c)
+  Co-authored-by: Tatsuro Sakaguchi <tacchan.mello.ioiq@gmail.com>
+* Use member variables instead. (`#653 <https://github.com/gazebosim/ros_gz/issues/653>`_) (`#655 <https://github.com/gazebosim/ros_gz/issues/655>`_)
+  (cherry picked from commit 5c1251a658ad8dd276664c2c88300d27572e25da)
+  Co-authored-by: Carlos Agüero <caguero@openrobotics.org>
+* Move gzserver logic to its action (`#646 <https://github.com/gazebosim/ros_gz/issues/646>`_) (`#649 <https://github.com/gazebosim/ros_gz/issues/649>`_)
+  (cherry picked from commit 6bbb9e405856e23f445f9f8fa87f27ccbff4d114)
+  Co-authored-by: Carlos Agüero <caguero@openrobotics.org>
+* Add a way to pass extra parameters to ros_gz_bridge (`#628 <https://github.com/gazebosim/ros_gz/issues/628>`_) (`#648 <https://github.com/gazebosim/ros_gz/issues/648>`_)
+  * Add bridge_params argument to ros_gz_bridge
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  Co-authored-by: Wiktor Bajor <69388767+Wiktor-99@users.noreply.github.com>
+  (cherry picked from commit 558a1cfd55f9921e78a87c563d8ed847e9eae6bd)
+  Co-authored-by: Aarav Gupta <amronos275@gmail.com>
+* Add remove entity node (`#629 <https://github.com/gazebosim/ros_gz/issues/629>`_) (`#647 <https://github.com/gazebosim/ros_gz/issues/647>`_)
+  (cherry picked from commit 04446e08e5a1153043e074528a7a3f2ec55449ab)
+  Co-authored-by: Wiktor Bajor <69388767+Wiktor-99@users.noreply.github.com>
+* Contributors: Addisu Z. Taddese, Alejandro Hernández Cordero, mergify[bot]
+
 1.0.7 (2024-11-08)
 ------------------
 * Bugfix: `if "false"` is always `True` (`#617 <https://github.com/gazebosim/ros_gz/issues/617>`_) (`#640 <https://github.com/gazebosim/ros_gz/issues/640>`_)
