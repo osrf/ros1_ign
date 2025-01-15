@@ -15,7 +15,7 @@
 #ifndef ROS_GZ_SIM__GZSERVER_HPP_
 #define ROS_GZ_SIM__GZSERVER_HPP_
 
-#include <thread>
+#include <gz/utils/ImplPtr.hh>
 #include <rclcpp/node.hpp>
 
 // ROS node that executes a gz-sim Server given a world SDF file or string.
@@ -36,8 +36,9 @@ public:
   void OnStart();
 
 private:
-  /// \brief We don't want to block the ROS thread.
-  std::thread thread_;
+  /// \internal
+  /// \brief Private data pointer.
+  GZ_UTILS_UNIQUE_IMPL_PTR(dataPtr)
 };
 }  // namespace ros_gz_sim
 

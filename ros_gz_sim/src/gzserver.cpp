@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "ros_gz_sim/gzserver.hpp"
+
 #include <functional>
+#include <thread>
 #include <gz/common/Console.hh>
 #include <gz/sim/Server.hh>
 #include <gz/sim/SystemLoader.hh>
@@ -20,22 +23,29 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp_components/register_node_macro.hpp>
 
-#include <ros_gz_sim/gzserver.hpp>
 
 namespace ros_gz_sim
 {
 
-GzServer::GzServer(const rclcpp::NodeOptions & options)
-: Node("gzserver", options)
+class GzServer::Implementation
 {
-  thread_ = std::thread(std::bind(&GzServer::OnStart, this));
+  /// \brief We don't want to block the ROS thread.
+
+public:
+  std::thread thread;
+};
+
+GzServer::GzServer(const rclcpp::NodeOptions & options)
+: Node("gzserver", options), dataPtr(gz::utils::MakeUniqueImpl<Implementation>())
+{
+  this->dataPtr->thread = std::thread(std::bind(&GzServer::OnStart, this));
 }
 
 GzServer::~GzServer()
 {
   // Make sure to join the thread on shutdown.
-  if (thread_.joinable()) {
-    thread_.join();
+  if (this->dataPtr->thread.joinable()) {
+    this->dataPtr->thread.join();
   }
 }
 
