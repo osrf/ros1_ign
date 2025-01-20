@@ -19,6 +19,7 @@ from typing import cast, Dict, List, Optional, Union
 from launch.action import Action
 from launch.frontend import Entity, expose_action, Parser
 from launch.launch_context import LaunchContext
+import launch.logging
 from launch.some_substitutions_type import SomeSubstitutionsType
 from launch.substitutions import TextSubstitution
 from launch.utilities import ensure_argument_type
@@ -35,7 +36,8 @@ class RosGzBridge(Action):
     def __init__(
         self,
         *,
-        bridge_name: SomeSubstitutionsType,
+        name: Optional[SomeSubstitutionsType] = None,
+        bridge_name: Optional[SomeSubstitutionsType] = None,
         config_file: SomeSubstitutionsType,
         container_name: SomeSubstitutionsType = 'ros_gz_container',
         create_own_container: Union[bool, SomeSubstitutionsType] = False,
@@ -43,13 +45,13 @@ class RosGzBridge(Action):
         use_composition: Union[bool, SomeSubstitutionsType] = False,
         use_respawn: Union[bool, SomeSubstitutionsType] = False,
         log_level: SomeSubstitutionsType = 'info',
-        bridge_params: Optional[SomeParameters] = None,
+        parameters: Optional[SomeParameters] = None,
         **kwargs
     ) -> None:
         """
         Construct a ros_gz bridge action.
 
-        :param: bridge_name Name of ros_gz_bridge  node
+        :param: name Name of ros_gz_bridge  node
         :param: config_file YAML config file.
         :param: container_name Name of container that nodes will load in if use composition.
         :param: create_own_container Whether to start a ROS container when using composition.
@@ -57,18 +59,25 @@ class RosGzBridge(Action):
         :param: use_composition Use composed bringup if True.
         :param: use_respawn Whether to respawn if a node crashes (when composition is disabled).
         :param: log_level Log level.
-        :param: bridge_params Extra parameters to pass to the bridge.
+        :param: parameters Extra parameters to pass to the bridge.
         """
         super().__init__(**kwargs)
 
-        self.__bridge_name = bridge_name
+        if name is None and bridge_name is None:
+            raise RuntimeError('RosGzBridge: One of the attributes "name" or "bridge_name" is required')
+        elif name is None:
+            logger = launch.logging.get_logger(__name__)
+            logger.warning('The attribute "bridge_name" is deprecated, please use "name" instead')
+            name = bridge_name
+
+        self.__name = name
         self.__config_file = config_file
         self.__container_name = container_name
         self.__namespace = namespace
 
         # This is here to allow using strings or booleans as values for boolean variables when
         # the Action is used from Python i.e., this allows users to do:
-        #   RosGzBridge(bridge_name='bridge1', use_composition='true', create_own_container=True)
+        #   RosGzBridge(name='bridge1', use_composition='true', create_own_container=True)
         # Note that use_composition is set to a string while create_own_container is set to a
         # boolean. The reverse would also work.
         # At some point, we might want to deprecate this and only allow setting booleans since
@@ -91,22 +100,23 @@ class RosGzBridge(Action):
 
         self.__use_respawn = normalize_typed_substitution(use_respawn, bool)
         self.__log_level = log_level
-        self.__bridge_params = [{'config_file':  self.__config_file}]
-        if bridge_params is not None:
-            # This handling of bridge_params was copied from launch_ros/actions/node.py
-            ensure_argument_type(bridge_params, (list), 'bridge_params', 'RosGzBridge')
+        self.__parameters = [{'config_file':  self.__config_file}]
+        if parameters is not None:
+            # This handling of parameters was copied from launch_ros/actions/node.py
+            ensure_argument_type(parameters, (list), 'parameters', 'RosGzBridge')
             # All elements in the list are paths to files with parameters (or substitutions that
             # evaluate to paths), or dictionaries of parameters (fields can be substitutions).
-            self.__bridge_params.extend(cast(list, bridge_params))
+            self.__parameters.extend(cast(list, parameters))
 
     @classmethod
     def parse(cls, entity: Entity, parser: Parser):
         """Parse ros_gz_bridge."""
         kwargs: Dict = super().parse(entity, parser)[1]
 
-        bridge_name = entity.get_attr(
-            'bridge_name', data_type=str,
-            optional=False)
+        name = entity.get_attr('name', data_type=str, optional=True)
+
+        # Handle deprecated bridge_name attribute
+        bridge_name = entity.get_attr('bridge_name', data_type=str, optional=True)
 
         config_file = entity.get_attr(
             'config_file', data_type=str,
@@ -137,6 +147,10 @@ class RosGzBridge(Action):
             optional=True)
 
         parameters = entity.get_attr('param', data_type=List[Entity], optional=True)
+
+        if isinstance(name, str):
+            name = parser.parse_substitution(name)
+            kwargs['name'] = name
 
         if isinstance(bridge_name, str):
             bridge_name = parser.parse_substitution(bridge_name)
@@ -172,7 +186,7 @@ class RosGzBridge(Action):
             kwargs['log_level'] = log_level
 
         if parameters is not None:
-            kwargs['bridge_params'] = Node.parse_nested_parameters(parameters, parser)
+            kwargs['parameters'] = Node.parse_nested_parameters(parameters, parser)
 
         return cls, kwargs
 
@@ -192,12 +206,12 @@ class RosGzBridge(Action):
             launch_descriptions.append(Node(
                 package='ros_gz_bridge',
                 executable='bridge_node',
-                name=self.__bridge_name,
+                name=self.__name,
                 namespace=self.__namespace,
                 output='screen',
                 respawn=perform_typed_substitution(context, self.__use_respawn, bool),
                 respawn_delay=2.0,
-                parameters=self.__bridge_params,
+                parameters=self.__parameters,
                 arguments=['--ros-args', '--log-level', self.__log_level],
                 ))
 
@@ -212,9 +226,9 @@ class RosGzBridge(Action):
                     ComposableNode(
                         package='ros_gz_bridge',
                         plugin='ros_gz_bridge::RosGzBridge',
-                        name=self.__bridge_name,
+                        name=self.__name,
                         namespace=self.__namespace,
-                        parameters=self.__bridge_params,
+                        parameters=self.__parameters,
                         extra_arguments=[{'use_intra_process_comms': True}],
                         ),
                     ],
@@ -229,9 +243,9 @@ class RosGzBridge(Action):
                     ComposableNode(
                         package='ros_gz_bridge',
                         plugin='ros_gz_bridge::RosGzBridge',
-                        name=self.__bridge_name,
+                        name=self.__name,
                         namespace=self.__namespace,
-                        parameters=self.__bridge_params,
+                        parameters=self.__parameters,
                         extra_arguments=[{'use_intra_process_comms': True}],
                         ),
                     ],
