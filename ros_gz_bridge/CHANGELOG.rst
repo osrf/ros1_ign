@@ -2,6 +2,35 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.3 (2025-01-14)
+------------------
+* Use both ROS package and message name for unique mappings (`#656 <https://github.com/gazebosim/ros_gz/issues/656>`_)
+  Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+* Merge pull request `#664 <https://github.com/gazebosim/ros_gz/issues/664>`_ from azeey/improve_parameter_handling
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Merge pull request `#663 <https://github.com/gazebosim/ros_gz/issues/663>`_ from azeey/improve_arg_parsing
+  The `RosGzBridge` and `GzServer` now support different spellings for
+  boolean arguments (`True`, `true`). This also simplifies how
+  conditionals are used to create composable nodes by evaluating the
+  conditionals and using them as regular Python booleans instead of
+  relying on `PythonExpression`. It was actually the `PythonExpression`
+  that was preventing support of boolean arguments spelled `true`/`false`.
+* Improve parameter handling for RosGzBridge
+* Fix linter errors
+* Improve argument parsing in Actions
+  The `RosGzBridge` and `GzServer` now support different spellings for
+  boolean arguments (`True`, `true`). This also simplifies how
+  conditionals are used to create composable nodes by evaluating the
+  conditionals and using them as regular Python booleans instead of
+  relying on `PythonExpression`. It was actually the `PythonExpression`
+  that was preventing support of boolean arguments spelled `true`/`false`.
+* Fix use_respawn argument causing errors (`#651 <https://github.com/gazebosim/ros_gz/issues/651>`_)
+* Add a way to pass extra parameters to ros_gz_bridge (`#628 <https://github.com/gazebosim/ros_gz/issues/628>`_)
+  * Add bridge_params argument to ros_gz_bridge
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  Co-authored-by: Wiktor Bajor <69388767+Wiktor-99@users.noreply.github.com>
+* Contributors: Aarav Gupta, Addisu Z. Taddese, Alejandro Hernández Cordero, Øystein Sture
+
 2.1.2 (2024-10-31)
 ------------------
 
