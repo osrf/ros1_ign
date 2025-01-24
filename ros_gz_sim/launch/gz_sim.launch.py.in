@@ -23,6 +23,7 @@ from ros2pkg.api import get_package_names
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.actions import ExecuteProcess, Shutdown
+from launch.actions import LogInfo
 from launch.substitutions import LaunchConfiguration
 
 # Copied from https://github.com/ros-simulation/gazebo_ros_pkgs/blob/79fd94c6da76781a91499bc0f54b70560b90a9d2/gazebo_ros/scripts/gazebo_ros_paths.py
@@ -101,6 +102,7 @@ def launch_gz(context, *args, **kwargs):
     ign_version = LaunchConfiguration('ign_version').perform(context)
     debugger = LaunchConfiguration('debugger').perform(context)
     on_exit_shutdown = LaunchConfiguration('on_exit_shutdown').perform(context)
+    debug_env = LaunchConfiguration('debug_env').perform(context)
 
     if not len(gz_args) and len(ign_args):
         print("ign_args is deprecated, migrate to gz_args!")
@@ -126,15 +128,29 @@ def launch_gz(context, *args, **kwargs):
     else:
         on_exit = None
 
-    return [ExecuteProcess(
-            cmd=[exec, exec_args, '--force-version', gz_version],
-            name='gazebo',
-            output='screen',
-            additional_env=env,
-            shell=True,
-            prefix=debug_prefix,
-            on_exit=on_exit
-        )]
+    if debug_env == 'true':
+        return [
+            LogInfo(f"Launching gazebo with the environment variables: {env}"),
+            ExecuteProcess(
+                cmd=[exec, exec_args, '--force-version', gz_version],
+                name='gazebo',
+                output='screen',
+                additional_env=env,
+                shell=True,
+                prefix=debug_prefix,
+                on_exit=on_exit
+                )]
+    else:
+        return [
+            ExecuteProcess(
+                cmd=[exec, exec_args, '--force-version', gz_version],
+                name='gazebo',
+                output='screen',
+                additional_env=env,
+                shell=True,
+                prefix=debug_prefix,
+                on_exit=on_exit
+                )]
 
 
 def generate_launch_description():
