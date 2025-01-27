@@ -165,9 +165,23 @@ int main(int _argc, char ** _argv)
   unsigned int timeout = 5000;
   bool executed = node.Request(service, req, timeout, rep, result);
 
+<<<<<<< HEAD
   if (executed) {
     if (result && rep.data()) {
       RCLCPP_INFO(ros2_node->get_logger(), "Requested creation of entity.");
+=======
+  while(rclcpp::ok()) {
+    if (node.Request(service, req, timeout, rep, result)) {
+      if (result && rep.data()) {
+        RCLCPP_INFO(ros2_node->get_logger(), "Entity creation successful.");
+        return 0;
+      } else {
+        RCLCPP_ERROR(
+          ros2_node->get_logger(), "Entity creation failed.\n %s",
+          req.DebugString().c_str());
+        return 1;
+      }
+>>>>>>> 5e3b073 (Fix spelling in entity creation (#688))
     } else {
       RCLCPP_ERROR(
         ros2_node->get_logger(), "Failed request to create entity.\n %s",
