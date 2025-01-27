@@ -264,7 +264,7 @@ int main(int _argc, char ** _argv)
   while(rclcpp::ok()) {
     if (node.Request(service, req, timeout, rep, result)) {
       if (result && rep.data()) {
-        RCLCPP_INFO(ros2_node->get_logger(), "Entity creation successfull.");
+        RCLCPP_INFO(ros2_node->get_logger(), "Entity creation successful.");
         return 0;
       } else {
         RCLCPP_ERROR(
