@@ -105,6 +105,7 @@ public:
     size_t /*queue_size*/,
     rclcpp::PublisherBase::SharedPtr ros_pub)
   {
+<<<<<<< HEAD
     std::function<void(const GZ_T &,
       const gz::transport::MessageInfo &)> subCb =
       [this, ros_pub](const GZ_T & _msg,
@@ -114,6 +115,16 @@ public:
         if (!_info.IntraProcess()) {
           this->gz_callback(_msg, ros_pub);
         }
+=======
+    auto pub = std::dynamic_pointer_cast<rclcpp::Publisher<ROS_T>>(ros_pub);
+    if (pub == nullptr) {
+      return;
+    }
+    std::function<void(const GZ_T &)> subCb =
+      [this, pub, override_timestamps_with_wall_time](const GZ_T & _msg)
+      {
+        this->gz_callback(_msg, pub, override_timestamps_with_wall_time);
+>>>>>>> f646d5c (Minor optimization to avoid dynamic casting in Gazebo callbacks (#692))
       };
 
     node->Subscribe(topic_name, subCb);
@@ -140,6 +151,7 @@ protected:
   static
   void gz_callback(
     const GZ_T & gz_msg,
+<<<<<<< HEAD
     rclcpp::PublisherBase::SharedPtr ros_pub)
   {
     ROS_T ros_msg;
@@ -149,6 +161,23 @@ protected:
     if (pub != nullptr) {
       pub->publish(ros_msg);
     }
+=======
+    std::shared_ptr<rclcpp::Publisher<ROS_T>> ros_pub,
+    bool override_timestamps_with_wall_time)
+  {
+    ROS_T ros_msg;
+    convert_gz_to_ros(gz_msg, ros_msg);
+    if constexpr (has_header<ROS_T>::value) {
+      if (override_timestamps_with_wall_time) {
+        auto now = std::chrono::system_clock::now().time_since_epoch();
+        auto ns =
+          std::chrono::duration_cast<std::chrono::nanoseconds>(now).count();
+        ros_msg.header.stamp.sec = ns / 1e9;
+        ros_msg.header.stamp.nanosec = ns - ros_msg.header.stamp.sec * 1e9;
+      }
+    }
+    ros_pub->publish(ros_msg);
+>>>>>>> f646d5c (Minor optimization to avoid dynamic casting in Gazebo callbacks (#692))
   }
 
 public:
