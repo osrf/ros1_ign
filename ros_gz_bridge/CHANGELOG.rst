@@ -2,6 +2,13 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.9 (2025-02-12)
+------------------
+* Minor optimization to avoid dynamic casting in Gazebo callbacks (`#692 <https://github.com/gazebosim/ros_gz/issues/692>`_) (`#693 <https://github.com/gazebosim/ros_gz/issues/693>`_)
+  (cherry picked from commit f646d5cade730166f8cb408d483c24b6d382ca0e)
+  Co-authored-by: Addisu Z. Taddese <addisu@openrobotics.org>
+* Contributors: mergify[bot]
+
 1.0.8 (2025-01-14)
 ------------------
 * Merge pull request `#670 <https://github.com/gazebosim/ros_gz/issues/670>`_ from gazebosim/ahcorde/jazzy/bp/663

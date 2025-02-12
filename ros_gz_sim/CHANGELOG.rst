@@ -2,6 +2,13 @@
 Changelog for package ros_gz_sim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.9 (2025-02-12)
+------------------
+* Fix spelling in entity creation (`#688 <https://github.com/gazebosim/ros_gz/issues/688>`_) (`#689 <https://github.com/gazebosim/ros_gz/issues/689>`_)
+  (cherry picked from commit 5e3b0730359a4f3f23cb26f6083ae5620b9a5ea1)
+  Co-authored-by: Leander Stephen D'Souza <leanderdsouza1234@gmail.com>
+* Contributors: mergify[bot]
+
 1.0.8 (2025-01-14)
 ------------------
 * Shutdown explicitly while existing (`#623 <https://github.com/gazebosim/ros_gz/issues/623>`_) (`#679 <https://github.com/gazebosim/ros_gz/issues/679>`_)
