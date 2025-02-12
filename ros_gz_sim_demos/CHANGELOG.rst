@@ -2,6 +2,9 @@
 Changelog for package ros1_gz_sim_demos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.4 (2025-02-12)
+------------------
+
 2.1.3 (2025-01-14)
 ------------------
 * Refactor triggered_camera demo (`#645 <https://github.com/gazebosim/ros_gz/issues/645>`_)

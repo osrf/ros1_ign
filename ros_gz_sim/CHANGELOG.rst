@@ -2,6 +2,13 @@
 Changelog for package ros_gz_sim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.4 (2025-02-12)
+------------------
+* Fix spelling in entity creation (`#688 <https://github.com/gazebosim/ros_gz/issues/688>`_)
+* Use PIMPL pattern in gzserver (`#683 <https://github.com/gazebosim/ros_gz/issues/683>`_)
+* Expose header for `GzServer` (`#681 <https://github.com/gazebosim/ros_gz/issues/681>`_)
+* Contributors: Addisu Z. Taddese, Leander Stephen D'Souza, Patrick Roncagliolo
+
 2.1.3 (2025-01-14)
 ------------------
 * Shutdown explicitly while existing (`#623 <https://github.com/gazebosim/ros_gz/issues/623>`_)

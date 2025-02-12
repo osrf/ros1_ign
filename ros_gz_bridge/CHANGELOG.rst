@@ -2,6 +2,11 @@
 Changelog for package ros_gz_bridge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.4 (2025-02-12)
+------------------
+* Minor optimization to avoid dynamic casting in Gazebo callbacks (`#692 <https://github.com/gazebosim/ros_gz/issues/692>`_)
+* Contributors: Addisu Z. Taddese
+
 2.1.3 (2025-01-14)
 ------------------
 * Use both ROS package and message name for unique mappings (`#656 <https://github.com/gazebosim/ros_gz/issues/656>`_)
